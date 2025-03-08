@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./cssComponent/header.css";
 import { IoMdSearch } from "react-icons/io";
-import { Flex, Input } from "antd";
+import { Input } from "antd";
 import { LuShoppingCart } from "react-icons/lu";
 
 const Header = () => {
@@ -13,8 +13,6 @@ const Header = () => {
     "25% OFF (ALMOST) EVERYTHING! USE CODE: SUMMER SALE",
     "OUR BIGGEST SALE YET 50% OF ALL SUMMER SHOES",
   ];
-
-  // const slideInterval = useRef(null);
 
   useEffect(() => {
     slideInterval.current = setSlideInterval(() => {

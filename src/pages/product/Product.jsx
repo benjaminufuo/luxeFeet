@@ -98,6 +98,13 @@ const Product = () => {
           </div>
         </div>
       </div>
+
+      <div className="ProductBodySmallDotBox">
+        <div className="ProductBodySmallDotBox1">
+          
+        </div>
+      </div>
+
     </div>
   </div>;
 };

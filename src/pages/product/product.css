@@ -175,9 +175,10 @@
         background-color: rgb(209, 209, 209);
         margin-top: 5px;
     }
-
+    
     .ProductBodySmallDotBox1:hover{
         background-color: gray;
+        cursor: pointer;
     }
 }
 

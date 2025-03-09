@@ -1,5 +1,7 @@
 import React from 'react'
 import "./womenCollection.css"
+import ProductGrid from './ProductGrid ';
+import CategoryCard from './CategoryCard';
 
 const WomenCollection = () => {
   return <div>
@@ -41,6 +43,9 @@ const WomenCollection = () => {
         </div>
       </div>
 
+
+      <CategoryCard />
+      <ProductGrid/>
       </div>
     
   </div>;

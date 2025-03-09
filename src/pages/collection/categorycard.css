@@ -1,0 +1,92 @@
+.category-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Specific positioning for each category image */
+  .dress-image {
+    object-position: center;
+  }
+  
+  .sports-image {
+    object-position: center;
+  }
+  
+  .card:hover .card-image {
+    transform: scale(1.05);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.4)
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .card-title {
+    color: white;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .shop-button {
+    background-color: rgba(75, 85, 99, 0.9);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .shop-button:hover {
+    background-color: rgba(75, 85, 99, 1);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .category-cards {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 20px;
+    }
+  
+    .card {
+      height: 300px;
+    }
+  
+    .card-title {
+      font-size: 24px;
+    }
+  }

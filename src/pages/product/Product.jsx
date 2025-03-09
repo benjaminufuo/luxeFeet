@@ -2,16 +2,15 @@ import { useState } from "react";
 import "./product.css";
 import { IoMdCart } from "react-icons/io";
 
+
 const Product = () => {
 
   const [add, setAdd] = useState(0)
 
-
   return <div className="ProductBody">
     <div className="ProductBodySmall">
-      <div className="ProductBodySmallHeader">
-        <h4>HOME /</h4>
-        <h4>  PRODUCT DETAILS</h4>
+      <div className="ShopingCartBodySmallHeader">
+        <h3><span className="HeaderHome">HOME </span> / PRODUCT</h3>
       </div>
 
       <div className="ProductBodySmallNav">

@@ -104,6 +104,10 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
+      cursor: pointer;
+    }
+    .carttext {
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     }
   }
 }
@@ -119,33 +123,19 @@
 }
 
 .slideshow {
-  font-size: 20px;
-  color: white;
+  font-size: 22px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: white;
   position: absolute;
   opacity: 0;
-  animation: fade 7s infinite;
-  transition: 10s all ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 2;
-  }
-  30% {
-    opacity: 1;
-  }
-  60% {
-    opacity: ease-out;
-  }
-  100% {
-    opacity: 0;
-  }
+.active-slide {
+  opacity: 1;
 }
+
 .pages {
   position: relative;
 }

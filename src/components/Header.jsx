@@ -8,20 +8,20 @@ import { useNavigate } from "react-router";
 const Header = () => {
   const navigate = useNavigate();
   const [dropDown, setDropDown] = useState("");
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [activePage, setActivePage] = useState("Home");
-  const [slideInterval, setSlideInterval] = useState({});
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const slides = [
     "25% OFF (ALMOST) EVERYTHING! USE CODE: SUMMER SALE",
     "OUR BIGGEST SALE YET 50% OF ALL SUMMER SHOES",
   ];
 
   useEffect(() => {
-    slideInterval.current = setSlideInterval(() => {
+    const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
 
-    return () => clearInterval(slideInterval.current);
+    return () => clearInterval(interval);
   }, [slides.length]);
 
   return (
@@ -103,13 +103,22 @@ const Header = () => {
           </ul>
           <div className="cart" onClick={() => navigate("/home/shopingcart")}>
             <LuShoppingCart />
-            <span>CART</span>
+            <span className="carttext">CART</span>
             <span>[0]</span>
           </div>
         </article>
       </section>
       <section className="headercontainer2">
-        <span className="slideshow">{slides[currentSlide]}</span>
+        {slides.map((text, index) => (
+          <span
+            key={index}
+            className={`slideshow ${
+              index === currentSlide ? "active-slide" : ""
+            }`}
+          >
+            {text}
+          </span>
+        ))}
       </section>
     </main>
   );

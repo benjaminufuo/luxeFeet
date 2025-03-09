@@ -1,14 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./cssComponent/header.css";
 import { IoMdSearch } from "react-icons/io";
 import { Input } from "antd";
 import { LuShoppingCart } from "react-icons/lu";
+import { useNavigate } from "react-router";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [dropDown, setDropDown] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activePage, setActivePage] = useState("Home");
-  const [slideInterval, setSlideInterval] = useState("");
+  const [slideInterval, setSlideInterval] = useState({});
   const slides = [
     "25% OFF (ALMOST) EVERYTHING! USE CODE: SUMMER SALE",
     "OUR BIGGEST SALE YET 50% OF ALL SUMMER SHOES",
@@ -46,13 +48,19 @@ const Header = () => {
           <ul className="pagesroute">
             <li
               className={`pages ${activePage === "Home" ? "active" : ""}`}
-              onClick={() => setActivePage("Home")}
+              onClick={() => {
+                setActivePage("Home");
+                navigate("/");
+              }}
             >
               HOME
             </li>
             <li
               className={`pages ${activePage === "Women" ? "active" : ""}`}
-              onClick={() => setActivePage("Women")}
+              onClick={() => {
+                setActivePage("Women");
+                navigate("/home/womencollection");
+              }}
               onMouseEnter={() => setDropDown(true)}
               onMouseLeave={() => setDropDown(false)}
             >
@@ -66,28 +74,34 @@ const Header = () => {
               >
                 <div className="triangle"></div>
                 <ul>
-                  <li>Produc Detaill</li>
+                  <li>Product Detaill</li>
                   <li>Shoping cart</li>
                   <li>Checkout</li>
                   <li>Order Complete</li>
-                  <li>Wish list</li>
+                  <li onClick={() => navigate("login")}>Login</li>
                 </ul>
               </div>
             )}
             <li
               className={`pages ${activePage === "Details" ? "active" : ""}`}
-              onClick={() => setActivePage("Details")}
+              onClick={() => {
+                setActivePage("Details");
+                navigate("/home/details");
+              }}
             >
               DETAILS
             </li>
             <li
               className={`pages ${activePage === "Product" ? "active" : ""}`}
-              onClick={() => setActivePage("Product")}
+              onClick={() => {
+                setActivePage("Product");
+                navigate("/home/product");
+              }}
             >
               PRODUT
             </li>
           </ul>
-          <div className="cart">
+          <div className="cart" onClick={() => navigate("/home/shopingcart")}>
             <LuShoppingCart />
             <span>CART</span>
             <span>[0]</span>

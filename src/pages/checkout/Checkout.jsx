@@ -15,8 +15,8 @@ const CheckoutStepper = ({ currentStep }) => {
       {steps.map((step, index) => (
         <React.Fragment key={step.number}>
           <div className={`step ${currentStep >= index + 1 ? "active" : ""}`}>
-            <div className="step-number">{step.number}</div>
-            <div className="step-title">{step.title}</div>
+            <article className="step-number">{step.number}</article>
+            <article className="step-title">{step.title}</article>
           </div>
           {index < steps.length - 1 && <div className="step-divider" />}
         </React.Fragment>

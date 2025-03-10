@@ -11,19 +11,24 @@ const ShopingCart = () => {
         <div className="ShopingCartBodySmallBoxSmaller">
           <div className="CircleBox">
             <div className="Circle">
-              
+              <p>1</p>
             </div>
             <h5>SHOPPING CART</h5>
           </div>
+          <hr className="hr"/>
+
           <div className="CircleBox">
             <div className="Circle">
-             
+             <p>2</p>
             </div>
+        
             <h5>CHECKOUT</h5>
           </div>
+          <hr className="hr"/>
+
           <div className="CircleBox">
             <div className="Circle">
-              
+              <p>3</p>
             </div>
             <h5>ORDER COMPLETE</h5>
           </div>

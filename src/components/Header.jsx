@@ -75,8 +75,10 @@ const Header = () => {
                 <div className="triangle"></div>
                 <ul>
                   <li>Product Detaill</li>
-                  <li>Shoping cart</li>
-                  <li>Checkout</li>
+                  <li onClick={() => navigate("/home/shopingcart")}>
+                    Shoping cart
+                  </li>
+                  <li onClick={() => navigate("home/checkout")}>Checkout</li>
                   <li>Order Complete</li>
                   <li onClick={() => navigate("login")}>Login</li>
                 </ul>

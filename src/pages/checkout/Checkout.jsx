@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./checkout.css";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const CheckoutStepper = ({ currentStep }) => {
   const steps = [
@@ -226,6 +228,7 @@ const PaymentMethod = () => {
 const Checkout = () => {
   return (
     <div className="wrapper">
+      <Header />
       <CheckoutStepper currentStep={2} />
       <div className="checkout-content">
         <div className="billing-section">
@@ -237,6 +240,7 @@ const Checkout = () => {
           <PaymentMethod />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

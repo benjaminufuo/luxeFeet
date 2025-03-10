@@ -74,7 +74,7 @@ const Header = () => {
               >
                 <div className="triangle"></div>
                 <ul>
-                  <li>Product Detaill</li>
+                  <li onClick={() => navigate("/home/product")}>Product Detaill</li>
                   <li onClick={() => navigate("/home/shopingcart")}>
                     Shoping cart
                   </li>

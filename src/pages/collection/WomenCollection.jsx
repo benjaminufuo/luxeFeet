@@ -17,7 +17,7 @@ const WomenCollection = () => {
       <div className="hero-container">
         <div className="hero-banner">
           <img
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFNT8VZUmMXZedshOWdvUyiHqo0xyWJxvww&s"
+      src="https://preview.colorlib.com/theme/footwear/images/item-14.jpg"
       alt=""
       className="hero-image"
     />

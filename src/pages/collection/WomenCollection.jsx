@@ -28,18 +28,18 @@ const WomenCollection = () => {
   </div>
 
   <div className="category-nav">
-    <a href="/women/new-arrivals" className="nav-link">
+    <p className="nav-link">
       NEW ARRIVALS
-    </a>
-    <a href="/women/best-sellers" className="nav-link">
+    </p>
+    <p className="nav-link">
       BEST SELLERS
-    </a>
-    <a href="/women/extended-widths" className="nav-link">
+    </p>
+    <p className="nav-link">
       EXTENDED WIDTHS
-    </a>
-    <a href="/women/sale" className="nav-link">
+    </p>
+    <p className="nav-link">
             SALE
-          </a>
+          </p>
         </div>
       </div>
 

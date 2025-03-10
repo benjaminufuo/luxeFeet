@@ -76,7 +76,7 @@ const BillingForm = () => {
                   placeholder="Company Name"
                 />
               </div>
-              <div className="form-group">
+              <article className="form-group">
                 <label htmlFor="address">Address</label>
                 <input
                   type="text"
@@ -84,7 +84,7 @@ const BillingForm = () => {
                   className="form-input"
                   placeholder="Enter Your Address"
                 />
-              </div>
+              </article>
               <div className="form-group">
                 <label htmlFor="address2">Second Address</label>
                 <input
@@ -144,7 +144,7 @@ const BillingForm = () => {
                 </div>
               </div>
               <div className="form-row">
-                <div className="checkbox-group">
+                <article className="checkbox-group">
                   <input
                     type="radio"
                     id="create-account"
@@ -152,7 +152,7 @@ const BillingForm = () => {
                     onChange={(e) => setCreateAccount(e.target.checked)}
                   />
                   <label htmlFor="create-account">Create an Account?</label>
-                </div>
+                </article>
                 <div className="checkbox-group">
                   <input
                     type="radio"

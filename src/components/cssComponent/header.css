@@ -100,7 +100,7 @@
 
     .cart {
       display: flex;
-      width: 10%;
+      width: 20%;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -108,6 +108,19 @@
     }
     .carttext {
       font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    }
+    .carticon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+    .profile {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 25px;
+      width: 50%;
     }
   }
 }

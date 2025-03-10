@@ -74,7 +74,9 @@ const Header = () => {
               >
                 <div className="triangle"></div>
                 <ul>
-                  <li onClick={() => navigate("/home/product")}>Product Detaill</li>
+                  <li onClick={() => navigate("/home/product")}>
+                    Product Detaill
+                  </li>
                   <li onClick={() => navigate("/home/shopingcart")}>
                     Shoping cart
                   </li>
@@ -85,22 +87,13 @@ const Header = () => {
               </div>
             )}
             <li
-              className={`pages ${activePage === "Details" ? "active" : ""}`}
-              onClick={() => {
-                setActivePage("Details");
-                navigate("/home/details");
-              }}
-            >
-              DETAILS
-            </li>
-            <li
               className={`pages ${activePage === "Product" ? "active" : ""}`}
               onClick={() => {
                 setActivePage("Product");
                 navigate("/home/product");
               }}
             >
-              PRODUT
+              PRODUT DETAILS
             </li>
           </ul>
           <div className="cart" onClick={() => navigate("/home/shopingcart")}>

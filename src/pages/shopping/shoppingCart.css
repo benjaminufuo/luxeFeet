@@ -69,11 +69,13 @@
        justify-content: center;
        align-items: center;
         border: 1px solid rgb(216, 214, 214);
+        color: rgb(216, 214, 214);
     }
 
     
      h5{
         font-size: 12px;
+        color: rgb(216, 214, 214);
     }
 }
 

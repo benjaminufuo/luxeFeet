@@ -19,7 +19,6 @@ const App = () => {
       children: [
         { path: "home/womencollection", element: <WomenCollection /> },
         { path: "home/product", element: <Product /> },
-        { path: "home/details", element: <Details /> },
         { path: "home/shopingcart", element: <ShopingCart /> },
       ],
     },

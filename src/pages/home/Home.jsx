@@ -39,8 +39,8 @@ const Home = () => {
       setFade(true);
       setTimeout(() => {
         setCurrentSlide((prev) => (prev + 1) % slides.length);
-      }, 10000);
-    }, 10000);
+      }, 7000);
+    }, 7000);
     return () => clearInterval(interval);
   }, [slides.length]);
 
@@ -201,10 +201,10 @@ const Home = () => {
         </div>
         <div className="list">
           <ul>
-            <li className="prev" onClick={previousSlide}>
+            <li className="prev" onClick={() => previousSlide()}>
               Previous
             </li>
-            <li className="next" onClick={nextSlide}>
+            <li className="next" onClick={() => nextSlide()}>
               Next
             </li>
           </ul>

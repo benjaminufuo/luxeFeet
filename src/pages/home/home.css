@@ -61,7 +61,7 @@
   font-size: 1.7rem;
   font-family: "Times New Roman", Times, serif;
   font-weight: 500;
-  color: #808080;
+  color: #c7bfbf;
 }
 
 .btn {
@@ -116,6 +116,13 @@
   padding-left: 18px;
   color: #868080;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  & li {
+    cursor: pointer;
+  }
 }
 
 .secondsectionheader {

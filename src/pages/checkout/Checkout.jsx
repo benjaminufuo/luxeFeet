@@ -122,7 +122,7 @@ const BillingForm = () => {
                 </div>
               </div>
               <div className="form-row">
-                <div className="form-group">
+                <article className="form-group">
                   <label htmlFor="email">E-mail Address</label>
                   <input
                     type="email"
@@ -130,7 +130,7 @@ const BillingForm = () => {
                     className="form-input"
                     placeholder="Your@email.com"
                   />
-                </div>
+                </article>
                 <div className="form-group">
                   <label htmlFor="phone">Phone Number</label>
                   <input

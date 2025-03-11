@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import "../login/login.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { UserContext } from "../../../global/Context";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation;
   const { saveUser } = useContext(UserContext);
   const [ischecked, setIschecked] = useState("");
   const [input, setInput] = useState({
@@ -20,11 +21,17 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     saveUser(input);
-    console.log("submit succesful", input);
+    console.log("submit successful", input);
+
+    const prevLocation = location.state?.prevLocation || "/";
+    navigate(prevLocation, { replace: true });
   };
 
   return (
     <main className="loginmain">
+      {/* <button className="backtohome" type="button" onClick={() => navigate(-1)}>
+        Back
+      </button> */}
       <section className="logincontainer">
         <div className="logintextconatiner">
           <span className="loginlogo">Login</span>

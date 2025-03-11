@@ -157,9 +157,9 @@
   position: absolute;
   width: 140px;
   border-radius: 5px;
-  height: 210px;
+  height: 220px;
   background-color: #000000;
-  top: 195px;
+  top: 193px;
   left: 210px;
   z-index: 1000;
   opacity: 0;
@@ -202,7 +202,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid #000000;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 12px solid #000000;
 }

@@ -36,6 +36,7 @@ const Header = () => {
             <Input
               className="headerinput"
               placeholder="Search"
+              name="search"
               suffix={
                 <IoMdSearch
                   className="searchicon"

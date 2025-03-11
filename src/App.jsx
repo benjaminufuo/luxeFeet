@@ -4,13 +4,13 @@ import First from "./routes/First";
 import Home from "./pages/home/Home";
 import WomenCollection from "./pages/collection/WomenCollection";
 import Product from "./pages/product/Product";
-import Details from "./pages/details/Details";
 import ShopingCart from "./pages/shopping/ShopingCart";
 import Checkout from "./pages/checkout/Checkout";
 import Login from "./pages/auth/login/Login";
 import Signup from "./pages/auth/signup/Signup";
 import UserProvider from "./global/Context";
 import Private from "./routes/Private";
+import Profile from "./pages/profile/Profile";
 
 const App = () => { 
   const routes = createBrowserRouter([
@@ -19,7 +19,6 @@ const App = () => {
       children: [
         { path: "home/womencollection", element: <WomenCollection /> },
         { path: "home/product", element: <Product /> },
-        { path: "home/details", element: <Details /> },
         { path: "home/shopingcart", element: <ShopingCart /> },
       ],
     },
@@ -30,6 +29,8 @@ const App = () => {
     { path: "/", element: <Home /> },
     { path: "login", element: <Login /> },
     { path: "signup", element: <Signup /> },
+    { path: "profile", element: <Profile /> },
+    { path: "*", element: <Home /> },
   ]);
   return (
     <div className="main">

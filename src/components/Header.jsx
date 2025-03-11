@@ -4,6 +4,7 @@ import { IoMdSearch } from "react-icons/io";
 import { Input } from "antd";
 import { LuShoppingCart } from "react-icons/lu";
 import { useNavigate } from "react-router";
+import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ const Header = () => {
             <Input
               className="headerinput"
               placeholder="Search"
+              name="search"
               suffix={
                 <IoMdSearch
                   className="searchicon"
@@ -74,7 +76,9 @@ const Header = () => {
               >
                 <div className="triangle"></div>
                 <ul>
-                  <li>Product Detaill</li>
+                  <li onClick={() => navigate("/home/product")}>
+                    Product Detaills
+                  </li>
                   <li onClick={() => navigate("/home/shopingcart")}>
                     Shoping cart
                   </li>
@@ -84,15 +88,7 @@ const Header = () => {
                 </ul>
               </div>
             )}
-            <li
-              className={`pages ${activePage === "Details" ? "active" : ""}`}
-              onClick={() => {
-                setActivePage("Details");
-                navigate("/home/details");
-              }}
-            >
-              DETAILS
-            </li>
+
             <li
               className={`pages ${activePage === "Product" ? "active" : ""}`}
               onClick={() => {
@@ -100,13 +96,21 @@ const Header = () => {
                 navigate("/home/product");
               }}
             >
-              PRODUT
+              PRODUCT-DETAILS
             </li>
           </ul>
-          <div className="cart" onClick={() => navigate("/home/shopingcart")}>
-            <LuShoppingCart />
-            <span className="carttext">CART</span>
-            <span>[0]</span>
+          <div className="cart">
+            <div
+              className="carticon"
+              onClick={() => navigate("/home/shopingcart")}
+            >
+              <LuShoppingCart />
+              <span className="carttext">CART</span>
+              <span>[0]</span>
+            </div>
+            <div className="profile">
+              <FaUserCircle onClick={() => navigate("profile")} />
+            </div>
           </div>
         </article>
       </section>

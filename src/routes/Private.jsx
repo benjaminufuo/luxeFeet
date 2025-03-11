@@ -4,7 +4,7 @@ import { UserContext } from "../../src/global/Context";
 
 const Private = () => {
   const { user } = useContext(UserContext);
-  return user ? <Outlet /> : <Navigate to="/login" />;
+  return user ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default Private;

@@ -12,7 +12,7 @@ import Signup from "./pages/auth/signup/Signup";
 import UserProvider from "./global/Context";
 import Private from "./routes/Private";
 
-const App = () => {
+const App = () => { 
   const routes = createBrowserRouter([
     {
       element: <First />,

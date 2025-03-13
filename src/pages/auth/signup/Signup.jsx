@@ -8,6 +8,7 @@ const Signup = () => {
   const [input, setInput] = useState({
     contact: "",
     email: "",
+    username: "",
     password: "",
     confirmpassword: "",
   });
@@ -48,6 +49,17 @@ const Signup = () => {
               name="email"
               type="email"
               value={input.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="inputcontainer">
+            <h2 className="label">Username</h2>
+            <input
+              className="logininput"
+              type="username"
+              name="username"
+              value={input.username}
+              placeholder="Enter Username"
               onChange={handleChange}
             />
           </div>

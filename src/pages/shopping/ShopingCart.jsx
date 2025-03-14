@@ -1,10 +1,15 @@
 import "./shoppingCart.css";
+import { NavLink } from "react-router-dom";
 
 const ShopingCart = () => {
   return <div className="ShopingCartBody">
     <div className="ShopingCartBodySmall">
       <div className="ShopingCartBodySmallHeader">
-        <h3><span className="HeaderHome">HOME    </span>  / SHOPING CART</h3>
+        <h3><span className="HeaderHome">
+          <NavLink to={"/"}>
+             HOME
+            </NavLink>
+                 </span>  / SHOPING CART</h3>
       </div>
 
       <div className="ShopingCartBodySmallBox">

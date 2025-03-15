@@ -9,10 +9,11 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 100%;
+  width: 100%;
   min-height: 100vh;
+  background-color: red;
   background-color: #ffffff;
-  padding: 20px;
+  /* padding: 7em 0; */
 }
 
 .stepper {
@@ -21,7 +22,7 @@
   justify-content: center;
   margin: 65px 0;
   width: 100%;
-  max-width: 900px;
+  gap: 0;
 }
 
 .step {
@@ -30,6 +31,7 @@
   align-items: center;
   gap: 8px;
   position: relative;
+  z-index: 2;
 }
 
 .step-number {
@@ -37,12 +39,13 @@
   height: 70px;
   border: 2px solid #ddd;
   margin: 0 auto 5px;
+  color: teal;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: #666;
+  /* color: #666; */
   background: white;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
@@ -59,11 +62,13 @@
 }
 
 .step-divider {
-  width: 100px;
+  width: 10%;
+  /* flex-grow: 1; */
   background-color: #ddd;
-  height: 1px;
+  height: 2px;
   margin: 0 10px;
   position: relative;
+  z-index: 1;
   top: -10px;
 }
 
@@ -75,7 +80,7 @@
 h1 {
   font-size: 20px;
   margin-bottom: 15px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .form-section {
@@ -92,10 +97,10 @@ h1 {
 
 label {
   font-size: 14px;
-  font-weight: bold;
   font-family: "Montserrat", Arial, sans-serif;
   margin-bottom: 0.5rem;
   display: inline-block;
+  color: rgba(0, 0, 0, 0.589);
 }
 
 .form-input,
@@ -103,7 +108,6 @@ label {
   width: 100%;
   padding: 10px 15px;
   border: 1px solid #ddd;
-  border-radius: 5px;
   font-size: 14px;
 }
 
@@ -159,36 +163,39 @@ label {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  padding: 5px 0;
+  padding: 10px 0;
   border-bottom: 1px solid lightgrey;
 }
 
 .order-total {
   font-weight: bold;
-  /* border-top: 1px solid #ddd; */
   padding-top: 10px;
   margin-top: 10px;
 }
 .payment-method {
   background-color: #f5f5f5;
   padding: 20px;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 40px;
+  /* margin-top: 20px; */
 }
 
 .payment-method h2 {
   margin-bottom: 15px;
   font-size: 18px;
+  gap: 30px;
 }
 
 .payment-method label {
   display: block;
-  gap: 10px;
+  width: 85%;
+  gap: 30px;
+  padding: 10px;
   cursor: pointer;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .payment-method input {
+  padding: 40px;
   transform: scale(1.2);
 }
 

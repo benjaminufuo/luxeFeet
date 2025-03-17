@@ -1,25 +1,28 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./cssComponent/header.css";
 import { IoMdSearch } from "react-icons/io";
 import { Input } from "antd";
 import { LuShoppingCart } from "react-icons/lu";
+import { useNavigate } from "react-router";
+import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [dropDown, setDropDown] = useState("");
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [activePage, setActivePage] = useState("Home");
-  const [slideInterval, setSlideInterval] = useState("");
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const slides = [
     "25% OFF (ALMOST) EVERYTHING! USE CODE: SUMMER SALE",
     "OUR BIGGEST SALE YET 50% OF ALL SUMMER SHOES",
   ];
 
   useEffect(() => {
-    slideInterval.current = setSlideInterval(() => {
+    const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
 
-    return () => clearInterval(slideInterval.current);
+    return () => clearInterval(interval);
   }, [slides.length]);
 
   return (
@@ -46,13 +49,19 @@ const Header = () => {
           <ul className="pagesroute">
             <li
               className={`pages ${activePage === "Home" ? "active" : ""}`}
-              onClick={() => setActivePage("Home")}
+              onClick={() => {
+                setActivePage("Home");
+                navigate("/");
+              }}
             >
               HOME
             </li>
             <li
               className={`pages ${activePage === "Women" ? "active" : ""}`}
-              onClick={() => setActivePage("Women")}
+              onClick={() => {
+                setActivePage("Women");
+                navigate("/home/womencollection");
+              }}
               onMouseEnter={() => setDropDown(true)}
               onMouseLeave={() => setDropDown(false)}
             >
@@ -66,36 +75,55 @@ const Header = () => {
               >
                 <div className="triangle"></div>
                 <ul>
-                  <li>Produc Detaill</li>
-                  <li>Shoping cart</li>
-                  <li>Checkout</li>
+                  <li onClick={() => navigate("/home/product")}>
+                    Product Detaills
+                  </li>
+                  <li onClick={() => navigate("/home/shopingcart")}>
+                    Shoping cart
+                  </li>
+                  <li onClick={() => navigate("home/checkout")}>Checkout</li>
                   <li>Order Complete</li>
-                  <li>Wish list</li>
+                  <li onClick={() => navigate("login")}>Login</li>
                 </ul>
               </div>
             )}
-            <li
-              className={`pages ${activePage === "Details" ? "active" : ""}`}
-              onClick={() => setActivePage("Details")}
-            >
-              DETAILS
-            </li>
+
             <li
               className={`pages ${activePage === "Product" ? "active" : ""}`}
-              onClick={() => setActivePage("Product")}
+              onClick={() => {
+                setActivePage("Product");
+                navigate("/home/product");
+              }}
             >
-              PRODUT
+              PRODUCT-DETAILS
             </li>
           </ul>
           <div className="cart">
-            <LuShoppingCart />
-            <span>CART</span>
-            <span>[0]</span>
+            <div
+              className="carticon"
+              onClick={() => navigate("/home/shopingcart")}
+            >
+              <LuShoppingCart />
+              <span className="carttext">CART</span>
+              <span>[0]</span>
+            </div>
+            <div className="profile">
+              <FaUserCircle onClick={() => navigate("profile")} />
+            </div>
           </div>
         </article>
       </section>
       <section className="headercontainer2">
-        <span className="slideshow">{slides[currentSlide]}</span>
+        {slides.map((text, index) => (
+          <span
+            key={index}
+            className={`slideshow ${
+              index === currentSlide ? "active-slide" : ""
+            }`}
+          >
+            {text}
+          </span>
+        ))}
       </section>
     </main>
   );

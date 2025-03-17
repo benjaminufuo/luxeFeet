@@ -1,42 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useContext, use } from "react";
 import "../login/login.css";
 import "../signup/signup.css";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { userSignUp } from "../../../api/Api";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [disabled, setIsDisabled] = useState(true);
   const [input, setInput] = useState({
-    contact: "",
+    fullName: "",
     email: "",
     username: "",
     password: "",
-    confirmpassword: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInput((prev) => ({ ...prev, [name]: value }));
+    setIsDisabled(
+      !(
+        input.fullName &&
+        input.email &&
+        input.username &&
+        input.password &&
+        input.confirmPassword
+      )
+    );
   };
 
-  const handleSubmit = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    console.log("login succesfully", input);
+    const { fullName, email, username, password, confirmPassword } = input;
+    if (password !== confirmPassword) {
+      toast.error("password does not match!");
+      return;
+    }
+
+    try {
+      await userSignUp(
+        fullName,
+        email,
+        username,
+        password,
+        confirmPassword,
+        navigate
+      );
+      if (success) {
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Signup failed:", error.response?.data || error.message);
+      setIsDisabled(false);
+    }
   };
   return (
     <main className="signupnmain">
+      <Toaster />
       <section className="signupcontainer">
         <div className="signuptextconatiner">
           <span className="signuplogo">Signup</span>
           <p className="access">Create your account to get full access</p>
         </div>
-        <form className="signupform" onSubmit={handleSubmit}>
+        <form className="signupform" onSubmit={handleSignup}>
           <div className="inputcontainer">
             <h2 className="label">Full Name</h2>
             <input
               className="logininput"
-              type="contact"
-              name="contact"
-              value={input.contact}
+              type="fullName"
+              name="fullName"
+              value={input.fullName}
               placeholder="Enter full name"
               onChange={handleChange}
             />
@@ -79,22 +113,28 @@ const Signup = () => {
             <input
               className="logininput"
               placeholder="Confirm password"
-              name="confirmpassword"
+              name="confirmPassword"
               type="password"
-              value={input.confirmpassword}
+              value={input.confirmPassword}
               onChange={handleChange}
             />
           </div>
 
           <div className="register">
             <span className="registeraccount">
-              Already have an account?\
+              Already have an account?
               <p className="signup" onClick={() => navigate("/login")}>
                 Login
               </p>
               here
             </span>
-            <button className="loginbtn" onClick={() => navigate("/login")}>
+            <button
+              className="loginbtn"
+              type="submit"
+              onClick={() => navigate("/verify")}
+              disabled={disabled}
+              style={{ backgroundColor: disabled ? "#b8bab8" : "#88c8bc" }}
+            >
               Signup
             </button>
           </div>

@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import "../login/login.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { UserContext } from "../../../global/Context";
+import toast, { Toaster } from "react-hot-toast";
+import { userLogIn } from "../../../api/Api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,29 +11,31 @@ const Login = () => {
   const { saveUser } = useContext(UserContext);
   const [ischecked, setIschecked] = useState("");
   const [input, setInput] = useState({
-    contact: "",
+    email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    e.preventDefault();
     const { name, value } = e.target;
     setInput((prev) => ({ ...prev, [name]: value }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    saveUser(input);
-    console.log("submit successful", input);
+    userLogIn(input, navigate);
 
-    const prevLocation = location.state?.prevLocation || "/";
-    navigate(prevLocation, { replace: true });
+    //   saveUser(userInfo);
+    //   console.log("submit successful", response);
+
+    //   const prevLocation = location.state?.prevLocation || "/";
+    //   navigate(prevLocation, { replace: true });
+    // } catch (error) {
+    //   console.log("login failed");
+    // }
   };
 
   return (
     <main className="loginmain">
-      {/* <button className="backtohome" type="button" onClick={() => navigate(-1)}>
-        Back
-      </button> */}
+      <Toaster />
       <section className="logincontainer">
         <div className="logintextconatiner">
           <span className="loginlogo">Login</span>
@@ -43,9 +47,9 @@ const Login = () => {
             <input
               className="logininput"
               placeholder="Username / Email address"
-              name="contact"
-              type="contact"
-              value={input.contact}
+              name="email"
+              type="email"
+              value={input.email}
               onChange={handleChange}
             />
           </div>
@@ -81,7 +85,7 @@ const Login = () => {
               </p>
               here
             </span>
-            <button className="loginbtn" onClick={() => navigate("/")}>
+            <button className="loginbtn" type="submit">
               Login
             </button>
           </div>

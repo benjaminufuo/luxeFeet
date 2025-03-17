@@ -184,7 +184,7 @@ const Home = () => {
           className={`heroslideshow ${fade ? "fade" : ""}`}
           style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
         >
-          <div className="content" key={currentSlide}>
+          <div className="content" key={slides[currentSlide].image}>
             <h1 className="text1">{slides[currentSlide].text1}</h1>
             <span className="text2">{slides[currentSlide].text2}</span>
             <span className="text3">{slides[currentSlide].text3}</span>
@@ -214,10 +214,10 @@ const Home = () => {
         <h2>designed products that I wanted myself.</h2>
       </div>
       <div className="firstproduct">
-        {homefootwearone.map((index) => (
+        {homefootwearone.map((item, index) => (
           <div className="footwearone" key={index}>
-            <img src={index.image} />
-            <span>{index.text}</span>
+            <img src={item.image} />
+            <span>{item.text}</span>
           </div>
         ))}
       </div>
@@ -225,8 +225,8 @@ const Home = () => {
         <h2>Best Sellers</h2>
       </div>
       <div className="productdisplay">
-        {homefootwearmain.map((index) => (
-          <div className="homeproductdisplay" key={index}>
+        {homefootwearmain.map((i, index) => (
+          <div className="homeproductdisplay" key={i}>
             <img src={index.image} />
             <span>{index.title}</span>
             <span>{index.title1}</span>
@@ -242,9 +242,9 @@ const Home = () => {
         <h2 className="trusted">Trusted Partners</h2>
       </div>
       <div className="trustedlogodiv">
-        {patners.map((partner, index) => (
-          <div className="trustedpatners" key={index}>
-            <img src={partner.image} alt={`Partner ${index + 1}`} />
+        {patners.map((partner) => (
+          <div className="trustedpatners" key={partner}>
+            <img src={partner.image} alt={`Partner ${partner + 1}`} />
           </div>
         ))}
       </div>

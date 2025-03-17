@@ -9,16 +9,31 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (userData) {
-      setUser(JSON.parse(userData));
+      try {
+        setUser(JSON.parse(userData));
+      } catch (error) {
+        console.error("Failed to parse user data", error);
+        localStorage.removeItem("user");
+      }
     }
   }, []);
 
   const saveUser = (userDetails) => {
-    localStorage.setItem("user", JSON.stringify(userDetails));
-    setUser(userDetails);
+    if (userDetails && typeof userDetails === "object") {
+      localStorage.setItem("user", JSON.stringify(userDetails));
+      setUser(userDetails);
+    } else {
+      console.error("Invalid user details", userDetails);
+    }
   };
+
+  const logoutUser = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+
   return (
-    <UserContext.Provider value={{ user, saveUser }}>
+    <UserContext.Provider value={{ user, saveUser, logoutUser }}>
       {children}
     </UserContext.Provider>
   );

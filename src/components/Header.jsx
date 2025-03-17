@@ -12,18 +12,18 @@ const Header = () => {
   const [activePage, setActivePage] = useState("Home");
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const slides = [
+  const slidesShow = [
     "25% OFF (ALMOST) EVERYTHING! USE CODE: SUMMER SALE",
     "OUR BIGGEST SALE YET 50% OF ALL SUMMER SHOES",
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % slidesShow.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [slides.length]);
+  }, [slidesShow.length]);
 
   return (
     <main className="headermain">
@@ -36,6 +36,7 @@ const Header = () => {
             <Input
               className="headerinput"
               placeholder="Search"
+              name="search"
               suffix={
                 <IoMdSearch
                   className="searchicon"
@@ -114,11 +115,11 @@ const Header = () => {
         </article>
       </section>
       <section className="headercontainer2">
-        {slides.map((text, index) => (
+        {slidesShow.map((slides, text) => (
           <span
-            key={index}
+            key={slides}
             className={`slideshow ${
-              index === currentSlide ? "active-slide" : ""
+              slides === currentSlide ? "active-slide" : ""
             }`}
           >
             {text}

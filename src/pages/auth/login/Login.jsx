@@ -21,11 +21,8 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const prevLocation = location.state?.prevLocation || "/";
-    navigate(prevLocation, { replace: true });
-
     userLogIn(input, navigate);
+  };
 
 
   return (

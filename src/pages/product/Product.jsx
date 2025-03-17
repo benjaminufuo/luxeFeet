@@ -1,13 +1,18 @@
 import { useState } from "react";
 import "./product.css";
 import { IoMdCart } from "react-icons/io";
+import ProductManufauture from "./ProductManufauture";
+import ProductReview from "./ProductReview";
 
 
 const Product = () => {
 
   const [add, setAdd] = useState(0)
 
-  return <div className="ProductBody">
+  const [toggle, setToggle] = useState(1)
+
+  return <>
+  <div className="ProductBody">
     <div className="ProductBodySmall">
       <div className="ShopingCartBodySmallHeader">
         <h3><span className="HeaderHome">HOME </span> / PRODUCT</h3>
@@ -115,9 +120,15 @@ const Product = () => {
       </div>
 
       <div className="ProductBodySmallDescriptionBox">
-        <div className="ProductBodySmallDescriptionBoxs">DISCRIPTION</div>
-        <div className="ProductBodySmallDescriptionBoxs">MANUFATURE</div>
-        <div className="ProductBodySmallDescriptionBoxs">REVIEW</div>
+        <div className="ProductBodySmallDescriptionBoxs"
+        onClick={() => setToggle(1)}
+        >DISCRIPTION</div>
+        <div className="ProductBodySmallDescriptionBoxs"
+        onClick={() => setToggle(2)}
+        >MANUFATURE</div>
+        <div className="ProductBodySmallDescriptionBoxs"
+        onClick={() => setToggle(3)}
+        >REVIEW</div>
       </div>
 
       <div className="ProductBodySmallDescriptionBoxOutline">
@@ -145,6 +156,8 @@ const Product = () => {
 
     </div>
   </div>;
+  {/* {toggle === 1 ? <Product/>  toggle === 2 ? <ProductManufauture/>  toggle === 3 ? <ProductReview/> : null } */}
+  </>
 };
 
 export default Product;

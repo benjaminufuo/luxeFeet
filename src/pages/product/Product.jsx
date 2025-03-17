@@ -11,6 +11,12 @@ const Product = () => {
 
   const [toggle, setToggle] = useState(1)
 
+  const [togglePic, setTogglePic] = useState(1)
+
+  const [isActive, setIsActive] = useState("DISCRIPTION")
+
+  const [activeCircle, setActiveCircle] = useState("1")
+
   return <>
   <div className="ProductBody">
     <div className="ProductBodySmall">
@@ -20,7 +26,11 @@ const Product = () => {
 
       <div className="ProductBodySmallNav">
         <div className="ProductBodySmallNav1">
-          <img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-4.jpg" alt="" />
+          {togglePic === 1 ?
+          (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-1.jpg" alt="" />) 
+          : togglePic === 2 ? (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-2.jpg" alt="" />) 
+          : togglePic === 3 ? (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-3.jpg" alt="" />) 
+          : togglePic === 4 ? (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-4.jpg" alt="" />) : null   }
         </div>
         <div className="ProductBodySmallNav2">
           <div className="ProductBodySmallNav2Small">
@@ -93,7 +103,8 @@ const Product = () => {
             </div>
 
             <div className="ProductBodySmallNav2AddBox">
-              <div className="ProductBodySmallNav2AddBoxesShort" onClick={() => setAdd(add - 1)}>-</div>
+              <div className="ProductBodySmallNav2AddBoxesShort" onClick={() => 
+                add <= 0 ? 0 : setAdd(add - 1)}>-</div>
               <div className="ProductBodySmallNav2AddBoxesLong">{add}</div>
               <div className="ProductBodySmallNav2AddBoxesShort" onClick={() => setAdd(add + 1)}>+</div>
             </div>
@@ -104,34 +115,41 @@ const Product = () => {
       </div>
 
       <div className="ProductBodySmallDotBox">
-        <div className="ProductBodySmallDotBox1">
+        <div className={`${ activeCircle === "" ? "ACTIVECIRCLE" : "ProductBodySmallDotBox1"  }`}
+         onClick={() => {setTogglePic(1), setActiveCircle()}}
+        >
           
         </div>
-        <div className="ProductBodySmallDotBox1">
-          
+        <div className={`${ activeCircle === "" ? "ACTIVECIRCLE" : "ProductBodySmallDotBox1" }`}
+        onClick={() => {setTogglePic(2), setActiveCircle()}}
+        >
         </div>
-        <div className="ProductBodySmallDotBox1">
-          
+        <div className={`${ activeCircle === "" ?  "ACTIVECIRCLE" : "ProductBodySmallDotBox1" }`}
+        onClick={() => {setTogglePic(3), setActiveCircle()}}
+        >
         </div>
-        <div className="ProductBodySmallDotBox1">
-          
+        <div className={`${ activeCircle === "" ?  "ACTIVECIRCLE" : "ProductBodySmallDotBox1" }`}
+        onClick={() => {setTogglePic(4), setActiveCircle()}}
+        >
         </div>
         
       </div>
 
       <div className="ProductBodySmallDescriptionBox">
-        <div className="ProductBodySmallDescriptionBoxs"
-        onClick={() => setToggle(1)}
+        <div className={`${isActive === "DISCRIPTION" ? "ACTIVE" : "ProductBodySmallDescriptionBoxs"}`}
+        onClick={() => {setToggle(1), setIsActive("DISCRIPTION")}}
         >DISCRIPTION</div>
-        <div className="ProductBodySmallDescriptionBoxs"
-        onClick={() => setToggle(2)}
+        <div className={`${isActive === "MANUFATURE" ? "ACTIVE" : "ProductBodySmallDescriptionBoxs"}`}
+        onClick={() => {setToggle(2), setIsActive("MANUFATURE")}}
         >MANUFATURE</div>
-        <div className="ProductBodySmallDescriptionBoxs"
-        onClick={() => setToggle(3)}
+        <div className={`${isActive === "REVIEW" ? "ACTIVE" : "ProductBodySmallDescriptionBoxs"}`}
+        onClick={() => {setToggle(3), setIsActive("REVIEW")}}
         >REVIEW</div>
       </div>
 
-      <div className="ProductBodySmallDescriptionBoxOutline">
+      
+
+  {toggle === 1 ? (<div className="ProductBodySmallDescriptionBoxOutline">
         <p className="P">
         Even the all-powerful Pointing has no control about the blind 
         texts it is an almost unorthographic life One day however a small line of blind text
@@ -152,11 +170,9 @@ const Product = () => {
           <li>She packed her seven versalia</li>
           <li>tial into the belt and made herself on the way.</li>
         </ul>
-      </div>
-
+      </div>) : toggle === 2 ? <ProductManufauture/> : toggle === 3 ? <ProductReview/> : null }
     </div>
   </div>;
-  {/* {toggle === 1 ? <Product/>  toggle === 2 ? <ProductManufauture/>  toggle === 3 ? <ProductReview/> : null } */}
   </>
 };
 

@@ -22,15 +22,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     userLogIn(input, navigate);
-
-    //   saveUser(userInfo);
-    //   console.log("submit successful", response);
-
-    //   const prevLocation = location.state?.prevLocation || "/";
-    //   navigate(prevLocation, { replace: true });
-    // } catch (error) {
-    //   console.log("login failed");
-    // }
   };
 
   return (

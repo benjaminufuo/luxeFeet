@@ -33,7 +33,7 @@ const BillingForm = () => {
     <div className="container">
       <div className="layout">
         <div className="details">
-          <h1 className="">Billing Details</h1>
+          <h1>Billing Details</h1>
           <div className="form-section">
             <div className="form-group">
               <label htmlFor="country">Select Country</label>

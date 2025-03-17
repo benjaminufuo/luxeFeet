@@ -12,7 +12,7 @@ import UserProvider from "./global/Context";
 import Private from "./routes/Private";
 import Profile from "./pages/profile/Profile";
 
-const App = () => {
+const App = () => { 
   const routes = createBrowserRouter([
     {
       element: <First />,

@@ -72,42 +72,6 @@ const ShopingCart = () => {
           ) : (
             <p>No item added</p>
           )}
-          {/* <div className="ShopingCartBodyRow">
-            <div className="ShopingCartBodyRowImgBox">
-              <div className="ShopingCartBodyRowImgBox1">
-                <img
-                  className="img"
-                  src="https://preview.colorlib.com/theme/footwear/images/item-7.jpg"
-                  alt=""
-                />
-              </div>
-              <p>Product Name</p>
-            </div>
-            <div className="ShopingCartBodyRow2">
-              <p>$68.00</p>
-              <input type="text" className="Input" />
-              <p>$120.00</p>
-              <div className="cancleBox">x</div>
-            </div>
-          </div>
-          <div className="ShopingCartBodyRow">
-            <div className="ShopingCartBodyRowImgBox">
-              <div className="ShopingCartBodyRowImgBox1">
-                <img
-                  className="img"
-                  src="https://preview.colorlib.com/theme/footwear/images/item-8.jpg"
-                  alt=""
-                />
-              </div>
-              <p>Product Name</p>
-            </div>
-            <div className="ShopingCartBodyRow2">
-              <p>$68.00</p>
-              <input type="text" className="Input" />
-              <p>$120.00</p>
-              <div className="cancleBox">x</div>
-            </div>
-          </div> */}
         </div>
         <div className="ShopingCartBodyCalBox">
           <div className="Nav">

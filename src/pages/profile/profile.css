@@ -1,0 +1,115 @@
+.Profile-Body{
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Header{
+  width: 100%;
+  height: 10%;
+  /* background-color: black; */
+
+  & .BackBtn{
+    width: 10%;
+    height: 80%;
+    border-radius: 50px;
+    border: none;
+    background-color: green;
+    margin-left: 10px;
+  }
+}
+
+.BackBtn:hover{
+  background-color: red;
+  color: white;
+}
+
+.Profile-BodySmall{
+  width: 80%;
+  height: 80%;
+  /* background-color: gray; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.ProfileNav1{
+  width: 20%;
+  height: 50%;
+  background-color: pink;
+  border-radius: 100px;
+
+  & .Img{
+    width: 100%;
+    height: 100%;
+  /* border-radius: 180px; */
+
+  }
+}
+
+.ProfileNav2{
+  width: 60%;
+  height: 100%;
+  /* background-color: goldenrod; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.ProfileNav2Small{
+  width: 80%;
+  height: 80%;
+  /* background-color: #fff; */
+  display: flex;
+  gap: 29px;
+  flex-direction: column;
+}
+
+.ProfileNav2SmallLine{
+  width: 100%;
+  height: 10%;
+  /* background-color: gray; */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid black;
+}
+
+
+
+.ProfileNav2SmallBtnBox{
+  width: 100%;
+  height: 20%;
+  /* background-color: gray; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & .Btn{
+    width: 30%;
+    height: 80%;
+    border-radius: 50px;
+    border: none;
+    background-color: green;
+  }
+
+  & .Btn2{
+    width: 30%;
+    height: 80%;
+    border-radius: 50px;
+    border: none;
+    background-color: red;
+
+  }
+
+  & .Btn2:hover{
+    color: white;
+
+  }
+}

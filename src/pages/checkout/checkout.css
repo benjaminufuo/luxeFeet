@@ -129,7 +129,7 @@ label {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  max-width: 1000px;
+  width: 80%;
   margin: auto;
 }
 
@@ -144,6 +144,7 @@ label {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 50%;
 }
 
 .cart-total {

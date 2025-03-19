@@ -41,3 +41,12 @@ export const userLogIn = async (input, navigate) => {
     toast.error("failed to log inb ");
   }
 };
+
+export const getAllProduct = async (setState) => {
+  try {
+    const response = await axios.get(`${baseUrl}/getAllProducts`);
+    setState(response.data.data);
+  } catch (error) {
+    console.log("unable to get", error);
+  }
+};

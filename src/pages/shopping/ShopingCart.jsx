@@ -88,7 +88,7 @@ const ShopingCart = () => {
             <div className="SubtotalSmall">
               <div className="SubtotalSmalls">
                 <span>Subtotal:</span>
-                <span>$200.00</span>
+                <span>$200</span>
               </div>
               <div className="SubtotalSmalls">
                 <span>Delivery:</span>

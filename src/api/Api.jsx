@@ -41,3 +41,14 @@ export const userLogIn = async (input, navigate) => {
     toast.error("failed to log inb ");
   }
 };
+export const getAllProducts = async () => {
+  try {
+    const response = await axios.get(`${baseUrl}/getAllProducts`)
+    return Array.isArray(response.data.data) ? response.data.data : [response.data.data]
+  } catch (error) {
+    console.error("Failed to fetch products:", error)
+    toast.error("Failed to load products")
+    throw error
+  }
+}
+

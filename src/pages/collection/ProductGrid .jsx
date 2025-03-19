@@ -125,7 +125,7 @@ const ProductGrid = () => {
                 <FilterGroup title="MATERIAL" options={["Leather", "Suede"]} />
             </aside>
 
-            {/* Product Grid */}
+            
             <main className="products-container">
                 <div className="products-grid">
                     {products.map((product) => (
@@ -133,7 +133,7 @@ const ProductGrid = () => {
                     ))}
                 </div>
 
-                {/* Pagination */}
+                
                 <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
               

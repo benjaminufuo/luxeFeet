@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./product.css";
 import { IoMdCart } from "react-icons/io";
 import ProductManufauture from "./ProductManufauture";
 import ProductReview from "./ProductReview";
+import axios from "axios";
 
 
 const Product = () => {
@@ -17,6 +18,33 @@ const Product = () => {
 
   const [activeCircle, setActiveCircle] = useState("1")
 
+  const [product, setProduct] = useState(null)
+
+  const [addCart, setAddCart] = useState([])
+
+
+    const baseUrl = "https://ecommerce-project-m2bb.onrender.com/api/v1";
+
+
+  const getProduct = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/getOneProduct/67d31af570864bcc34c46273`)
+      setProduct(response.data.data)
+      console.log("this is the res", response.data.data)
+    } catch (error) {
+      console.log("error getting product", error)
+    }
+  }
+
+
+  useEffect(() =>{
+    getProduct()
+  },[])
+
+  const addToCart = () => {
+    if (!product) return; 
+  };
+
   return <>
   <div className="ProductBody">
     <div className="ProductBodySmall">
@@ -26,27 +54,28 @@ const Product = () => {
 
       <div className="ProductBodySmallNav">
         <div className="ProductBodySmallNav1">
-          {togglePic === 1 ?
+
+          <img className="Img1" src={product?.image?.imageUrl} alt="" />
+          {/* {togglePic === 1 ?
           (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-1.jpg" alt="" />) 
           : togglePic === 2 ? (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-2.jpg" alt="" />) 
           : togglePic === 3 ? (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-3.jpg" alt="" />) 
-          : togglePic === 4 ? (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-4.jpg" alt="" />) : null   }
+          : togglePic === 4 ? (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-4.jpg" alt="" />) : null   } */}
         </div>
         <div className="ProductBodySmallNav2">
           <div className="ProductBodySmallNav2Small">
-            <h3>Women's Boots Shoes Maca</h3>
-            <h2>$68.00</h2>
+            <h3>{product?.category}</h3>
+            <h2>{product?.price}</h2>
             <h5>(74 Rating)</h5>
-            <p className="Content">Even the all-powerful Pointing has no control about the blind texts it is an
-              almost unorthographic life One day however a small line of blind text by the name of
-              Lorem Ipsum decided to leave for the far World of Grammar.</p>
+            <p className="Content">{product?.description}
+            </p>
 
             <h4>SIZE</h4>
             <div className="ProductBodySmallNav2SmallSizesBox">
               <div className="ProductBodySmallNav2SmallSizesBoxes">
-                7
+                {product?.sizes}
               </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
+              {/* <div className="ProductBodySmallNav2SmallSizesBoxes">
                 75
               </div>
               <div className="ProductBodySmallNav2SmallSizesBoxes">
@@ -87,7 +116,7 @@ const Product = () => {
               </div>
               <div className="ProductBodySmallNav2SmallSizesBoxes">
                 14
-              </div>
+              </div> */}
 
             </div>
 
@@ -109,27 +138,27 @@ const Product = () => {
               <div className="ProductBodySmallNav2AddBoxesShort" onClick={() => setAdd(add + 1)}>+</div>
             </div>
 
-            <div className="Add2Cart"><IoMdCart size={20}/>Add to Cart</div>
+            <div className="Add2Cart"><IoMdCart size={20} onClick={addToCart}/>Add to Cart</div>
           </div>
         </div>
       </div>
 
       <div className="ProductBodySmallDotBox">
         <div className={`${ activeCircle === "" ? "ACTIVECIRCLE" : "ProductBodySmallDotBox1"  }`}
-         onClick={() => {setTogglePic(1), setActiveCircle()}}
+         onClick={() => {setTogglePic(1), setActiveCircle("1")}}
         >
           
         </div>
         <div className={`${ activeCircle === "" ? "ACTIVECIRCLE" : "ProductBodySmallDotBox1" }`}
-        onClick={() => {setTogglePic(2), setActiveCircle()}}
+        onClick={() => {setTogglePic(2), setActiveCircle("2")}}
         >
         </div>
         <div className={`${ activeCircle === "" ?  "ACTIVECIRCLE" : "ProductBodySmallDotBox1" }`}
-        onClick={() => {setTogglePic(3), setActiveCircle()}}
+        onClick={() => {setTogglePic(3), setActiveCircle("3")}}
         >
         </div>
         <div className={`${ activeCircle === "" ?  "ACTIVECIRCLE" : "ProductBodySmallDotBox1" }`}
-        onClick={() => {setTogglePic(4), setActiveCircle()}}
+        onClick={() => {setTogglePic(4), setActiveCircle("4")}}
         >
         </div>
         

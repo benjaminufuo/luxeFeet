@@ -1,6 +1,5 @@
 import "./shoppingCart.css";
 import { useConstomHook } from "../../global/Context";
-import Product from "../product/Product";
 
 const ShopingCart = () => {
   const { cart } = useConstomHook();

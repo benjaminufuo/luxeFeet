@@ -2,10 +2,21 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../../src/components/Footer";
 import "./home.css";
+import { getAllProduct } from "../../api/Api";
+import { useConstomHook } from "../../global/Context";
+import { use } from "react";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [fade, setFade] = useState(false);
+  const [products, setProducts] = useState([]);
+  const { addToCart } = useConstomHook();
+
+  useEffect(() => {
+    // fetchProduct();
+    getAllProduct(setProducts);
+  }, []);
+  console.log(products);
 
   const slides = [
     {
@@ -39,6 +50,7 @@ const Home = () => {
       setFade(true);
       setTimeout(() => {
         setCurrentSlide((prev) => (prev + 1) % slides.length);
+        setFade(false);
       }, 7000);
     }, 7000);
     return () => clearInterval(interval);
@@ -68,105 +80,6 @@ const Home = () => {
     {
       image: "https://preview.colorlib.com/theme/footwear/images/item-10.jpg",
       text: "Shop Women's Collection",
-    },
-  ];
-
-  const homefootwearmain = [
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-1.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-2.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-3.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-4.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-5.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-6.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-7.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-8.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-9.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/women.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-11.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-13.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-13.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-11.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-15.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
-    },
-    {
-      image: "https://preview.colorlib.com/theme/footwear/images/item-16.jpg",
-      title: "Women's Boots Shoes",
-      title1: "Maca",
-      amount: "$139.00",
     },
   ];
 
@@ -225,14 +138,26 @@ const Home = () => {
         <h2>Best Sellers</h2>
       </div>
       <div className="productdisplay">
-        {homefootwearmain.map((i, index) => (
-          <div className="homeproductdisplay" key={i}>
-            <img src={index.image} />
-            <span>{index.title}</span>
-            <span>{index.title1}</span>
-            <span>{index.amount}</span>
-          </div>
-        ))}
+        {products.length > 0 ? (
+          products.map((product) => (
+            <div className="homeproductdisplay" key={product._id}>
+              <article className="article">
+                <img src={product.image.imageUrl} alt={product.description} />
+                <button
+                  className="addToCart"
+                  onClick={() => addToCart(product)}
+                >
+                  Add to cart
+                </button>
+              </article>
+              <span>{product.description}</span>
+              <span className="span">{product.category}</span>
+              <span>{product.price}</span>
+            </div>
+          ))
+        ) : (
+          <p>Loading products....</p>
+        )}
       </div>
       <div className="shopproductdiv">
         <button className="shopproduct">Shop all products</button>
@@ -242,9 +167,9 @@ const Home = () => {
         <h2 className="trusted">Trusted Partners</h2>
       </div>
       <div className="trustedlogodiv">
-        {patners.map((partner) => (
+        {patners.map((partner, index) => (
           <div className="trustedpatners" key={partner}>
-            <img src={partner.image} alt={`Partner ${partner + 1}`} />
+            <img src={partner.image} alt={`Partner ${index + 1}`} />
           </div>
         ))}
       </div>

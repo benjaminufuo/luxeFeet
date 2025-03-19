@@ -5,12 +5,15 @@ import { Input } from "antd";
 import { LuShoppingCart } from "react-icons/lu";
 import { useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
+import { useConstomHook } from "../global/Context";
 
 const Header = () => {
   const navigate = useNavigate();
   const [dropDown, setDropDown] = useState("");
   const [activePage, setActivePage] = useState("Home");
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const { cart } = useConstomHook();
 
   const slidesShow = [
     "25% OFF (ALMOST) EVERYTHING! USE CODE: SUMMER SALE",
@@ -106,7 +109,7 @@ const Header = () => {
             >
               <LuShoppingCart />
               <span className="carttext">CART</span>
-              <span>[0]</span>
+              <span>[{cart.length}]</span>
             </div>
             <div className="profile">
               <FaUserCircle onClick={() => navigate("profile")} />
@@ -115,14 +118,14 @@ const Header = () => {
         </article>
       </section>
       <section className="headercontainer2">
-        {slidesShow.map((slides, text) => (
+        {slidesShow.map((slides, index) => (
           <span
-            key={slides}
+            key={index}
             className={`slideshow ${
-              slides === currentSlide ? "active-slide" : ""
+              index === currentSlide ? "active-slide" : ""
             }`}
           >
-            {text}
+            {slides}
           </span>
         ))}
       </section>

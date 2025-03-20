@@ -48,12 +48,24 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!input.email) {
-      console.log("enter email");
+    if (!input.email || !input.password) {
+      toast.error("Enter your email and password");
+      return;
     }
-    e.preventDefault();
-    userLogIn(input, navigate);
-    setIsDisabled(false);
+    try {
+      const response = await userLogIn(input, navigate);
+      if (!response.data.isVerified) {
+        toast.error("Verify your email to log in");
+        return;
+      }
+      toast.success("Login successful redirecting....");
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
+    } catch (error) {
+      toast.error("Login failed, please try again.");
+      console.error("Login error:", error);
+    }
   };
   const validateEmail = (input) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

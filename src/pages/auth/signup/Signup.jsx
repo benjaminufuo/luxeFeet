@@ -97,7 +97,7 @@ const Signup = () => {
         navigate
       );
       if (success) {
-        navigate("/verify");
+        navigate("/login");
       }
     } catch (error) {
       console.error("Signup failed:", error.response?.data || error.message);

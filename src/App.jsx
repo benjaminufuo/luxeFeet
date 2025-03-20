@@ -11,7 +11,6 @@ import Signup from "./pages/auth/signup/Signup";
 import UserProvider from "./global/Context";
 import Private from "./routes/Private";
 import Profile from "./pages/profile/Profile";
-import Verify from "./pages/verification/Verify";
 
 const App = () => {
   const routes = createBrowserRouter([
@@ -30,7 +29,6 @@ const App = () => {
     { path: "/", element: <Home /> },
     { path: "login", element: <Login /> },
     { path: "signup", element: <Signup /> },
-    { path: "verify", element: <Verify /> },
     { path: "profile", element: <Profile /> },
     { path: "*", element: <Home /> },
   ]);

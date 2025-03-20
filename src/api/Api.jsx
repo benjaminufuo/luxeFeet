@@ -38,7 +38,7 @@ export const userLogIn = async (input, navigate) => {
     console.log(response);
   } catch (error) {
     console.log("login error", error);
-    toast.error("failed to log inb ");
+    toast.error("Failed to log in");
   }
 };
 

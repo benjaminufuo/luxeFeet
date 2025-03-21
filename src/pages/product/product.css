@@ -76,7 +76,8 @@
 
 .ProductBodySmallNav2SmallSizesBox {
     width: 100%;
-    height: 30%;
+    height: 10%;
+    /* background-color: red; */
     /* background-color: rgb(36, 36, 36); */
     /* padding: 5px; */
     display: flex;
@@ -85,8 +86,8 @@
 
 
     & .ProductBodySmallNav2SmallSizesBoxes{
-        width: 12%;
-        height: 27%;
+        width: 50%;
+        height: 100%;
         background-color: rgb(209, 209, 209);
         color: white;
         display: flex;
@@ -111,7 +112,7 @@
 
 
     & .ProductBodySmallNav2SmallSizesBox22{
-        width: 12%;
+        width: max-content;
         height: 80%;
         background-color: rgb(209, 209, 209);
         color: white;
@@ -185,17 +186,18 @@
         border-radius: 100px;
         background-color: rgb(209, 209, 209);
         margin-top: 5px;
-    }
-    
-    .ProductBodySmallDotBox1:hover{
-        background-color: gray;
         cursor: pointer;
     }
+    
+    /* .ProductBodySmallDotBox1:hover{
+        background-color: gray;
+        cursor: pointer;
+    } */
 }
 
 .ProductBodySmallDescriptionBox{
     width: 100%;
-    height: 4%;
+    height: 2%;
     /* background-color: rgb(209, 209, 209); */
     display: flex;
     gap: 2px;
@@ -209,7 +211,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
         border-radius: 5px;
         cursor: pointer;
     }
@@ -240,3 +241,250 @@
         margin-left: 50px;
     }
 }
+
+
+.ProductManufautureBody{
+    width: 100%;
+    height: 13%;
+    border: 1px solid #e9e8e8;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 30px;
+    color: #9584a4;
+}
+
+.ProductReviewBody{
+    width: 100%;
+    height: 43%;
+    border: 1px solid #e9e8e8;
+    margin-top: 10px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+
+
+    & .ProductReviewNav1{
+        width: 67%;
+        height: 100%;
+        /* background-color: pink; */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    & .ProductReviewNav2{
+        width: 30%;
+        height: 50%;
+        /* background-color: blue; */
+        
+        
+    }
+
+    & .ProductReviewNav2Box{
+        width: 100%;
+        height: 100%;
+        /* background-color: red; */
+        padding: 10px;
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    & .ProductReviewNav2BoxRows{
+        width: 100%;
+        height: 10%;
+        /* background-color: blue; */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #9584a4;
+
+
+    }
+}
+
+.ProductReviewBox{
+    width: 100%;
+    height: 30%;
+    /* background-color: #9584a4; */
+    display: flex;
+
+    & .ProductReviewImgBox{
+        width: 20%;
+        height: 100%;
+        /* background-color: #9584a4; */
+        display: flex;
+        justify-content: center;
+    }
+
+    & .ProductReviewImgBoxs{
+        width: 70%;
+        height: 50%;
+        border-radius: 100px;
+        background-color: #fff;
+    }
+
+    & .ImgBox{
+        width: 100%;
+        height: 100%;
+        border-radius: 100px;
+    }
+
+    & .ProductReviewTextBox{
+        width: 80%;
+        height: 100%;
+        /* background-color: #a51313; */
+    }
+
+    & .ProductReviewTextBox1{
+        width: 100%;
+        height: 60%;
+        /* background-color: gray; */
+        color: #9584a4;
+
+    }
+
+
+    & .ProductReviewTextBox2{
+        width: 100%;
+        height: 40%;
+        /* background-color: purple; */
+       padding: 10px;
+        color: #9584a4;
+
+    }
+
+    & .ProductReviewTextBox1Text{
+        width: 100%;
+        height: 50%;
+        /* background-color: #fff; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #9584a4;
+
+    }
+
+    & .ProductReviewTextBox1Text1{
+        width: 100%;
+        height: 50%;
+        /* background-color: #fff; */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #9584a4;
+        
+    }
+
+    & .ProductReviewTextBox1Text1Small{
+        width: 50%;
+        height: 100%;
+        /* background-color: #a51313; */
+        display: flex;
+        align-items: center;
+        color: #9584a4;
+
+        
+    }
+
+    & .smallBox{
+        width: 5%;
+        height: 50%;
+        background-color: rgb(206, 204, 204);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.ACTIVE{
+    width: max-content;
+    height: 100%;
+    padding: 10px;
+    background-color: #616161;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.ACTIVECIRCLE{
+ background-color: black;
+ width: 1%;
+ height: 60%;
+ border-radius: 100px;
+ margin-top: 5px;
+ cursor: pointer;
+}
+
+
+/* End of Media Query Styling for Tablet Device */
+
+
+/* Media Query Styling for Big Tablet Device */
+
+@media only screen and (max-width: 900px) {
+    .ProductBodySmallNav{
+        /* background-color: green; */
+        height: 30%;
+    }
+
+
+}
+
+/* End of Media Query Styling for Tablet Device */
+/* Media Query Styling for Tablet Device */
+
+@media only screen and (max-width: 760px) {
+    .ProductBodySmall{
+        height: 90%;
+        /* background-color: red; */
+    }
+    .ProductBodySmallNav{
+        /* background-color: green; */
+        height: 30%;
+    }
+
+    .ProductBodySmallDescriptionBox{
+        /* background-color: pink; */
+        /* height: 70px; */
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .ProductBodySmallDescriptionBoxs{
+        padding: 20px 50px;
+    }
+
+    .ProductBodySmallDescriptionBoxOutline{
+        margin-top: 70px;
+        /* background-color: red; */
+        height: 45%;
+    }
+
+    .ProductManufautureBody{
+        height: 25%;
+        margin-top: 50px;
+        /* background-color: green; */
+    }
+
+    .ProductReviewBody{
+        height: 65%;
+        /* background-color: red; */
+        flex-direction: column;
+    }
+
+}
+
+/* End of Media Query Styling for Tablet Device */
+
+/* Media Query Styling for Mobile Device */
+
+@media only screen and (max-width: 480px) {}
+
+@media only screen and (max-width: 379px) {}

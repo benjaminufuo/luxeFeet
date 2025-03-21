@@ -81,9 +81,9 @@ const Product = () => {
             <h4>SIZE</h4>
             <div className="ProductBodySmallNav2SmallSizesBox">
               <div className="ProductBodySmallNav2SmallSizesBoxes">
-                {products?.sizes}
-              </div>
 
+                {product?.sizes}
+              </div>
             </div>
 
 

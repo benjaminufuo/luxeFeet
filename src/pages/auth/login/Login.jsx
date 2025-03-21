@@ -134,7 +134,12 @@ const Login = () => {
               <h2 className="checklabel">Keep me logged in</h2>
             </div>
 
-            <span className="forgetpassword">Forgot Password?</span>
+            <span
+              className="forgetpassword"
+              onClick={() => navigate("/forgetpassword")}
+            >
+              Forgot Password?
+            </span>
           </div>
           <div className="createaccount">
             <span className="registeraccount">

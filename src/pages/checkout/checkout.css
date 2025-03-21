@@ -143,8 +143,8 @@ label {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  height: 50%;
+  gap: 10px;
+  height: 70%;
 }
 
 .cart-total {
@@ -158,9 +158,11 @@ label {
 
 .cart-total p {
   display: flex;
+  height: 5vh;
   justify-content: space-between;
   font-size: 14px;
   padding: 5px 0;
+  /* text-decoration: underline; */
 }
 
 .order-total {
@@ -183,6 +185,7 @@ label {
 
 .payment-method label {
   display: block;
+  height: 5vh;
   gap: 10px;
   cursor: pointer;
   margin-bottom: 10px;
@@ -214,13 +217,22 @@ label {
   background: #4a4a4a;
 }
 
-@media (max-width: 768) {
+@media screen and (max-width: 800px) {
+  .billing-section {
+    width: 100%;
+  }
   .checkout-content {
     flex-direction: column;
+    width: 100%;
   }
-}
-@media (min-width: 768px) {
-  .layout {
-    flex-direction: row;
+
+  .summary-section {
+    width: 100%;
+  }
+
+  .cart-total,
+  .payment-method {
+    width: 100%;
+    flex-direction: column;
   }
 }

@@ -69,7 +69,8 @@ export const forgetPassword = async (setUpdate, email) => {
 export const resetPassword = async (
   password,
   confirmPassword,
-  setUpdateMessage
+  setUpdateMessage,
+  token
 ) => {
   try {
     if (!token) {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-import { getAllProducts, deleteProduct } from "../api/Api"
-import { toast } from "react-hot-toast"
+import { getAllWomenProducts, deleteWomenProduct } from "../api/Api"
+import toast  from "react-hot-toast"
 import "./productgrid.css"
 
 const ProductGrid = () => {
@@ -16,40 +16,30 @@ const ProductGrid = () => {
     material: [],
   })
 
+  
+  const fetchProducts = async () => {
+    try {
+      setLoading(true)
+      const data = await getAllWomenProducts()
+      setProducts(data)
+      setError(null)
+    } catch (err) {
+      setError("Failed to fetch products. Please try again later.")
+      toast.error("Failed to load products")
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
-    let isMounted = true;
-    const fetchProducts = async () => {
-      try {
-        setLoading(true)
-        const data = await getAllProducts()
-        if (isMounted) {
-          setProducts(data)
-          setError(null)
-        }
-      } catch (err) {
-        if (isMounted) {
-          setError("Failed to fetch products. Please try again later.")
-          toast.error("Failed to load products")
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false)
-        }
-      }
-    }
-
     fetchProducts()
-
-    return () => {
-      isMounted = false;
-    }
-  }, [])
+  }, []) 
 
   const handleDeleteProduct = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await deleteProduct(id)
-        fetchProducts()
+        await deleteWomenProduct(id)
+        fetchProducts() 
       } catch (error) {
         console.error("Error deleting product:", error)
       }
@@ -185,7 +175,7 @@ const SizeWidthFilter = ({ selectedSizes, onChange }) => {
         {sizes.map((size) => (
           <button
             key={size}
-            className={size-button ${selectedSizes.includes(size) ? "active" : ""}}
+            className={`size-button ${selectedSizes.includes(size) ? "active" : ""}`}
             onClick={() => onChange(size)}
           >
             {size}
@@ -193,10 +183,10 @@ const SizeWidthFilter = ({ selectedSizes, onChange }) => {
         ))}
       </div>
       <div className="width-options">
-        <button className={width-button ${selectedSizes.includes("M") ? "active" : ""}} onClick={() => onChange("M")}>
+        <button className={`width-button ${selectedSizes.includes("M") ? "active" : ""}`} onClick={() => onChange("M")}>
           M
         </button>
-        <button className={width-button ${selectedSizes.includes("W") ? "active" : ""}} onClick={() => onChange("W")}>
+        <button className={`width-button ${selectedSizes.includes("W") ? "active" : ""}`} onClick={() => onChange("W")}>
           W
         </button>
       </div>
@@ -223,41 +213,43 @@ const ColorFilter = ({ selectedColors, onChange }) => {
 }
 
 const ProductCard = ({ product, onDelete }) => {
-  const isAdmin = localStorage.getItem("token")
-
-  const handleProductClick = (e) => {
-    if (e.target.tagName === "BUTTON") {
-      return
-    }
-    window.location.href = /product/${product._id}
-  }
-
-  return (
-    <div className="product-card" onClick={handleProductClick}>
-      <img
-        src={product.imageUrl || "/placeholder.svg"}
-        alt={product.description}
-        className="product-image"
-      />
-      <div className="product-info">
-        <h3>{product.description}</h3>
-        <p className="brand">{product.category}</p>
-        <p className="price">{product.price}</p>
-      </div>
-      {isAdmin && (
-        <div className="product-actions" onClick={(e) => e.stopPropagation()}>
-          <button onClick={() => (window.location.href = /edit-product/${product._id})} className="edit-btn">
-            Edit
-          </button>
-          <button onClick={onDelete} className="delete-btn">
-            Delete
-          </button>
+    if (!product) return null; 
+    
+    const isAdmin = localStorage.getItem("token");
+  
+    const handleProductClick = (e) => {
+      if (e.target.tagName === "BUTTON") {
+        return;
+      }
+      window.location.href = `/product/${product._id}`; 
+    };
+  
+    return (
+      <div className="product-card" onClick={handleProductClick}>
+        <img
+          src={product.imageUrl || "/placeholder.svg"}
+          alt={product.description || "Product image"}
+          className="product-image"
+        />
+        <div className="product-info">
+          <h3>{product.description}</h3>
+          <p className="brand">{product.category}</p>
+          <p className="price">{product.price}</p>
         </div>
-      )}
-    </div>
-  )
-}
-
+        {isAdmin && (
+          <div className="product-actions" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => (window.location.href = `/edit-product/${product._id}`)} className="edit-btn">
+              Edit
+            </button>
+            <button onClick={onDelete} className="delete-btn">
+              Delete
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  };
+  
 const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
   return (
     <div className="pagination">
@@ -273,7 +265,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
         return (
           <button
             key={page}
-            className={page-button ${currentPage === page ? "active" : ""}}
+            className={`page-button ${currentPage === page ? "active" : ""}`}
             onClick={() => setCurrentPage(page)}
           >
             {page}

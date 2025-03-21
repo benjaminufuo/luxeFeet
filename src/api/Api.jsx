@@ -67,7 +67,7 @@ api.interceptors.request.use(
   (config) => {
     const token = getToken()
     if (token) {
-      config.headers.Authorization = Bearer ${token}
+      config.headers.Authorization = `Bearer ${token}`
     }
     return config
   },
@@ -113,7 +113,7 @@ export const createWomenProduct = async (productData) => {
 
 export const updateWomenProduct = async (id, productData) => {
   try {
-    const response = await api.put(`/updateWomenProduct/${id}, productData`)
+    const response = await api.put(`/updateWomenProduct/${id}`, productData)
     toast.success("Product updated successfully")
     return response.data.data
   } catch (error) {

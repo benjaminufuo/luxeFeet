@@ -57,12 +57,12 @@ const getToken = () => {
   return null
 }
 
-// Create axios instance with authorization header
+
 const api = axios.create({
   baseURL: baseUrl,
 })
 
-// Add request interceptor to include token in requests
+
 api.interceptors.request.use(
   (config) => {
     const token = getToken()
@@ -76,7 +76,7 @@ api.interceptors.request.use(
   },
 )
 
-// Women's products API functions
+
 export const getAllWomenProducts = async () => {
   try {
     const response = await api.get("/getAllWomen")

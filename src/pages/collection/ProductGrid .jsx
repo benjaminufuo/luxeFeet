@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { getAllWomenProducts, deleteWomenProduct } from "../api/Api"
+import { getAllProducts, deleteProduct } from "../api/Api"
 import { toast } from "react-hot-toast"
 import "./productgrid.css"
 
@@ -16,30 +16,39 @@ const ProductGrid = () => {
     material: [],
   })
 
-  
   useEffect(() => {
-    fetchProducts()
-  }, [])
-
-  const fetchProducts = async () => {
-    try {
-      setLoading(true)
-      const data = await getAllWomenProducts()
-      setProducts(data)
-      setError(null)
-    } catch (err) {
-      setError("Failed to fetch products. Please try again later.")
-      toast.error("Failed to load products")
-    } finally {
-      setLoading(false)
+    let isMounted = true;
+    const fetchProducts = async () => {
+      try {
+        setLoading(true)
+        const data = await getAllProducts()
+        if (isMounted) {
+          setProducts(data)
+          setError(null)
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError("Failed to fetch products. Please try again later.")
+          toast.error("Failed to load products")
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false)
+        }
+      }
     }
-  }
+
+    fetchProducts()
+
+    return () => {
+      isMounted = false;
+    }
+  }, [])
 
   const handleDeleteProduct = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await deleteWomenProduct(id)
-        
+        await deleteProduct(id)
         fetchProducts()
       } catch (error) {
         console.error("Error deleting product:", error)
@@ -52,10 +61,8 @@ const ProductGrid = () => {
       const updatedFilters = { ...prevFilters }
 
       if (updatedFilters[filterType].includes(value)) {
-    
         updatedFilters[filterType] = updatedFilters[filterType].filter((item) => item !== value)
       } else {
-        
         updatedFilters[filterType] = [...updatedFilters[filterType], value]
       }
 
@@ -63,20 +70,18 @@ const ProductGrid = () => {
     })
   }
 
-  
   const filteredProducts = products.filter((product) => {
-
     if (Object.values(filters).every((filterArray) => filterArray.length === 0)) {
       return true
     }
 
-    
     const matchesCategory =
       filters.brand.length === 0 ||
+      filters.brand.some((brand) => product.category.toLowerCase().includes(brand.toLowerCase()))
+
     const productSizes = product.sizes ? product.sizes.flatMap((size) => size.split(",")) : []
     const matchesSizes = filters.sizes.length === 0 || filters.sizes.some((size) => productSizes.includes(size))
 
-    
     const matchesStyle =
       filters.style.length === 0 ||
       filters.style.some((style) => product.description.toLowerCase().includes(style.toLowerCase()))
@@ -92,7 +97,6 @@ const ProductGrid = () => {
     return matchesCategory && matchesSizes && matchesStyle && matchesColors && matchesMaterial
   })
 
-  
   const productsPerPage = 12
   const indexOfLastProduct = currentPage * productsPerPage
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage
@@ -109,7 +113,6 @@ const ProductGrid = () => {
 
   return (
     <div className="product-section">
-      
       <aside className="filters">
         <FilterGroup
           title="BRAND"
@@ -133,7 +136,6 @@ const ProductGrid = () => {
         />
       </aside>
 
-      
       <main className="products-container">
         <div className="products-grid">
           {currentProducts.length > 0 ? (
@@ -145,12 +147,10 @@ const ProductGrid = () => {
           )}
         </div>
 
-        
         {filteredProducts.length > 0 && (
           <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
         )}
 
-        
         {localStorage.getItem("token") && (
           <div className="admin-actions">
             <button onClick={() => (window.location.href = "/add-product")} className="add-product-btn">
@@ -226,7 +226,6 @@ const ProductCard = ({ product, onDelete }) => {
   const isAdmin = localStorage.getItem("token")
 
   const handleProductClick = (e) => {
-    
     if (e.target.tagName === "BUTTON") {
       return
     }
@@ -236,7 +235,7 @@ const ProductCard = ({ product, onDelete }) => {
   return (
     <div className="product-card" onClick={handleProductClick}>
       <img
-        src={product.womenImage?.imageUrl || "/placeholder.svg"}
+        src={product.imageUrl || "/placeholder.svg"}
         alt={product.description}
         className="product-image"
       />
@@ -292,4 +291,4 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
   )
 }
 
-export default ProductGrid
+export default ProductGrid;

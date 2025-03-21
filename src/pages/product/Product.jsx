@@ -75,49 +75,6 @@ const Product = () => {
               <div className="ProductBodySmallNav2SmallSizesBoxes">
                 {product?.sizes}
               </div>
-              {/* <div className="ProductBodySmallNav2SmallSizesBoxes">
-                75
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                8
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                85
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                9
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                95
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                10
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                10.5
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                11
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                11.5
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                12
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                12.5
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                13
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                13.5
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                14
-              </div> */}
-
             </div>
 
 

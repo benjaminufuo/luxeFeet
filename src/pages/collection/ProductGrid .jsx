@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { getAllWomenProducts, deleteWomenProduct } from "../api/Api"
+import { getAllWomenProducts, deleteWomenProduct } from "../../api/Api"
 import toast  from "react-hot-toast"
 import "./productgrid.css"
 
@@ -35,6 +35,8 @@ const ProductGrid = () => {
     fetchProducts()
   }, []) 
 
+//   console.log(getAllWomenProduct)
+
   const handleDeleteProduct = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
@@ -69,7 +71,7 @@ const ProductGrid = () => {
       filters.brand.length === 0 ||
       filters.brand.some((brand) => product.category.toLowerCase().includes(brand.toLowerCase()))
 
-    const productSizes = product.sizes ? product.sizes.flatMap((size) => size.split(",")) : []
+    const productSizes = product?.sizes? product.sizes.flatMap((size) => size.split(",")) : []
     const matchesSizes = filters.sizes.length === 0 || filters.sizes.some((size) => productSizes.includes(size))
 
     const matchesStyle =
@@ -100,6 +102,9 @@ const ProductGrid = () => {
   if (error) {
     return <div className="error">{error}</div>
   }
+
+
+  console.log(currentProducts)
 
   return (
     <div className="product-section">
@@ -136,6 +141,7 @@ const ProductGrid = () => {
             <div className="no-products">No products found matching your filters.</div>
           )}
         </div>
+
 
         {filteredProducts.length > 0 && (
           <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
@@ -227,7 +233,7 @@ const ProductCard = ({ product, onDelete }) => {
     return (
       <div className="product-card" onClick={handleProductClick}>
         <img
-          src={product.imageUrl || "/placeholder.svg"}
+          src={product?.womenImage?.imageUrl || "/placeholder.svg"}
           alt={product.description || "Product image"}
           className="product-image"
         />

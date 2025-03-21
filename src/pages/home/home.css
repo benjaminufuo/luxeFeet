@@ -293,3 +293,38 @@
     width: 220px;
   }
 }
+
+
+
+@media only screen and (max-width: 760px) {
+ .secondsectionheader{
+  /* background-color: green; */
+  font-size: 25px;
+  text-align: center;
+ }
+
+ .firstproduct{
+  /* background-color: gray; */
+  flex-direction: column;
+  height: 70%;
+ }
+
+ .footwearone{
+  width: 100%;
+ }
+
+ .productdisplay{
+  /* background-color: green; */
+  flex-direction: column;
+ }
+
+ .homeproductdisplay{
+  width: 100%;
+ }
+
+ .trustedlogodiv{
+  flex-direction: column;
+  height: 70%;
+ }
+
+}

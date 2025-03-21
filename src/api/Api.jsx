@@ -51,6 +51,92 @@ export const getAllProduct = async (setState) => {
   }
 };
 
+const getToken = () => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("token")
+  }
+  return null
+}
+
+
+const api = axios.create({
+  baseURL: baseUrl,
+})
+
+
+api.interceptors.request.use(
+  (config) => {
+    const token = getToken()
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  },
+)
+
+
+export const getAllWomenProducts = async () => {
+  try {
+    const response = await api.get("/getAllWomen")
+    return response.data.data
+  } catch (error) {
+    console.error("Get all women products error:", error.response?.data || error.message)
+    toast.error("Failed to fetch products")
+    throw error
+  }
+}
+
+export const getWomenProduct = async (id) => {
+  try {
+    const response = await api.get(`/getOneWomen/${id}`)
+    return response.data.data
+  } catch (error) {
+    console.error("Get women product error:", error.response?.data || error.message)
+    toast.error("Failed to fetch product details")
+    throw error
+  }
+}
+
+export const createWomenProduct = async (productData) => {
+  try {
+    const response = await api.post("/createWomen", productData)
+    toast.success("Product created successfully")
+    return response.data.data
+  } catch (error) {
+    console.error("Create women product error:", error.response?.data || error.message)
+    toast.error("Failed to create product")
+    throw error
+  }
+}
+
+export const updateWomenProduct = async (id, productData) => {
+  try {
+    const response = await api.put(`/updateWomenProduct/${id}`, productData)
+    toast.success("Product updated successfully")
+    return response.data.data
+  } catch (error) {
+    console.error("Update women product error:", error.response?.data || error.message)
+    toast.error("Failed to update product")
+    throw error
+  }
+}
+
+export const deleteWomenProduct = async (id) => {
+  try {
+    const response = await api.delete(`/deleteWomenProduct/${id}`)
+    toast.success("Product deleted successfully")
+    return response.data.data
+  } catch (error) {
+    console.error("Delete women product error:", error.response?.data || error.message)
+    toast.error("Failed to delete product")
+    throw error
+  }
+}
+
+
 export const forgetPassword = async (setUpdate, email) => {
   try {
     const response = await axios.post(`${baseUrl}/forget-password`, {
@@ -93,3 +179,4 @@ export const resetPassword = async (
     return false;
   }
 };
+

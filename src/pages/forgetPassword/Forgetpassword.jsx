@@ -4,7 +4,7 @@ import { FaKeycdn } from "react-icons/fa";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { forgetPassword } from "../../api/Api";
 import { useNavigate } from "react-router";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 const Forgetpassword = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState({ email: "" });
@@ -25,15 +25,16 @@ const Forgetpassword = () => {
     await forgetPassword(setUpdateMessage, input.email);
 
     if (updateMessage) {
-      toast.success(updateMessage);
+      toast.success("Check your email to reset password");
     }
     setTimeout(() => {
-      navigate("/resetpassword");
-    }, 3000);
+      navigate("/login");
+    }, 7000);
   };
 
   return (
     <main className="forgetmain">
+      <Toaster />
       <form onSubmit={handleForgetPassword} className="forgetcontainer">
         <div className="forgeticon">
           <FaKeycdn className="fakeycdnicon" />

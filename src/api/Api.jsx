@@ -50,3 +50,45 @@ export const getAllProduct = async (setState) => {
     console.log("unable to get", error);
   }
 };
+
+export const forgetPassword = async (setUpdate, email) => {
+  try {
+    const response = await axios.post(`${baseUrl}/forget-password`, {
+      email,
+    });
+    localStorage.setItem("resetToken", response.data.token);
+    setUpdate(response.data.message);
+    console.log(response.data);
+  } catch (error) {
+    console.error("Unable to send reset email", error);
+    setUpdate("Failed to send reset link");
+  }
+};
+
+export const resetPassword = async (
+  password,
+  confirmPassword,
+  setUpdateMessage
+) => {
+  try {
+    const token = localStorage.getItem("resetToken");
+    if (!token) {
+      toast.error("Reset token not found. Request a new link.");
+      return false;
+    }
+    const response = await axios.post(`${baseUrl}/reset-password/${token}`, {
+      password,
+      confirmPassword,
+    });
+    console.log(response.data);
+    setUpdateMessage(response.data.message);
+    toast.success("Password reset succesful");
+    localStorage.removeItem("resetToken");
+    return true;
+  } catch (error) {
+    console.log("Unable to reset password");
+    setUpdateMessage("Unable to reset password");
+    toast.error("Unable to reset password");
+    return false;
+  }
+};

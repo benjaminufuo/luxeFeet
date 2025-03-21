@@ -3,10 +3,12 @@ import "./resetPassword.css";
 import { RiDoorLockLine } from "react-icons/ri";
 import toast from "react-hot-toast";
 import { resetPassword } from "../../api/Api";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const Resetpassword = () => {
   const navigate = useNavigate();
+  const { token } = useParams();
+  //   console.log(token);
   const [input, setInput] = useState({
     password: "",
     confirmPassword: "",
@@ -29,8 +31,8 @@ const Resetpassword = () => {
     await resetPassword(
       input.password,
       input.confirmPassword,
-
-      setUpdateMessage
+      setUpdateMessage,
+      token
     );
 
     if (success) {

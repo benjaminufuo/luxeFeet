@@ -35,7 +35,7 @@ const App = () => {
     { path: "login", element: <Login /> },
     { path: "signup", element: <Signup /> },
     { path: "forgetpassword", element: <Forgetpassword /> },
-    { path: "resetpassword", element: <Resetpassword /> },
+    { path: "resetpassword/:token", element: <Resetpassword /> },
     { path: "*", element: <Home /> },
   ]);
   return (

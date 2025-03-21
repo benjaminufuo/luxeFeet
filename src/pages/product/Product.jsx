@@ -4,6 +4,8 @@ import { IoMdCart } from "react-icons/io";
 import ProductManufauture from "./ProductManufauture";
 import ProductReview from "./ProductReview";
 import axios from "axios";
+import { useConstomHook } from "../../global/Context";
+
 
 
 const Product = () => {
@@ -12,15 +14,21 @@ const Product = () => {
 
   const [toggle, setToggle] = useState(1)
 
-  const [togglePic, setTogglePic] = useState(1)
+  // const [togglePic, setTogglePic] = useState(1)
 
   const [isActive, setIsActive] = useState("DISCRIPTION")
 
   const [activeCircle, setActiveCircle] = useState("1")
 
-  const [product, setProduct] = useState(null)
+  // const [product, setProduct] = useState(null)
 
-  const [addCart, setAddCart] = useState([])
+  // const [addCart, setAddCart] = useState([])
+
+  const { addToCart } = useConstomHook();
+
+    const [products, setProducts] = useState([]);
+  
+
 
 
     const baseUrl = "https://ecommerce-project-m2bb.onrender.com/api/v1";
@@ -28,8 +36,8 @@ const Product = () => {
 
   const getProduct = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/getOneProduct/67d31af570864bcc34c46273`)
-      setProduct(response.data.data)
+      const response = await axios.get(`${baseUrl}/getOneProduct/_id`)
+      setProducts(response.data.data)
       console.log("this is the res", response.data.data)
     } catch (error) {
       console.log("error getting product", error)
@@ -38,12 +46,12 @@ const Product = () => {
 
 
   useEffect(() =>{
-    getProduct()
+    getProduct(setProducts)
   },[])
 
-  const addToCart = () => {
-    if (!product) return; 
-  };
+  // const addToCart = () => {
+  //   if (!product) return; 
+  // };
 
   return <>
   <div className="ProductBody">
@@ -55,7 +63,7 @@ const Product = () => {
       <div className="ProductBodySmallNav">
         <div className="ProductBodySmallNav1">
 
-          <img className="Img1" src={product?.image?.imageUrl} alt="" />
+          <img className="Img1" src={products?.image?.imageUrl} alt="" />
           {/* {togglePic === 1 ?
           (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-1.jpg" alt="" />) 
           : togglePic === 2 ? (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-2.jpg" alt="" />) 
@@ -64,59 +72,17 @@ const Product = () => {
         </div>
         <div className="ProductBodySmallNav2">
           <div className="ProductBodySmallNav2Small">
-            <h3>{product?.category}</h3>
-            <h2>{product?.price}</h2>
+            <h3>{products?.category}</h3>
+            <h2>{products?.price}</h2>
             <h5>(74 Rating)</h5>
-            <p className="Content">{product?.description}
+            <p className="Content">{products?.description}
             </p>
 
             <h4>SIZE</h4>
             <div className="ProductBodySmallNav2SmallSizesBox">
               <div className="ProductBodySmallNav2SmallSizesBoxes">
-                {product?.sizes}
+                {products?.sizes}
               </div>
-              {/* <div className="ProductBodySmallNav2SmallSizesBoxes">
-                75
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                8
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                85
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                9
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                95
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                10
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                10.5
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                11
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                11.5
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                12
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                12.5
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                13
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                13.5
-              </div>
-              <div className="ProductBodySmallNav2SmallSizesBoxes">
-                14
-              </div> */}
 
             </div>
 
@@ -138,7 +104,7 @@ const Product = () => {
               <div className="ProductBodySmallNav2AddBoxesShort" onClick={() => setAdd(add + 1)}>+</div>
             </div>
 
-            <div className="Add2Cart"><IoMdCart size={20} onClick={addToCart}/>Add to Cart</div>
+            <div className="Add2Cart"><IoMdCart size={20} onClick={() => addToCart(product)}/>Add to Cart</div>
           </div>
         </div>
       </div>

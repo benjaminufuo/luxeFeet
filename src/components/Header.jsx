@@ -5,6 +5,7 @@ import { Input } from "antd";
 import { LuShoppingCart } from "react-icons/lu";
 import { useNavigate } from "react-router";
 import { FaUserCircle } from "react-icons/fa";
+import { useConstomHook } from "../global/Context";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,18 +13,20 @@ const Header = () => {
   const [activePage, setActivePage] = useState("Home");
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const slides = [
+  const { cart } = useConstomHook();
+
+  const slidesShow = [
     "25% OFF (ALMOST) EVERYTHING! USE CODE: SUMMER SALE",
     "OUR BIGGEST SALE YET 50% OF ALL SUMMER SHOES",
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % slidesShow.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [slides.length]);
+  }, [slidesShow.length]);
 
   return (
     <main className="headermain">
@@ -36,6 +39,7 @@ const Header = () => {
             <Input
               className="headerinput"
               placeholder="Search"
+              name="search"
               suffix={
                 <IoMdSearch
                   className="searchicon"
@@ -105,7 +109,7 @@ const Header = () => {
             >
               <LuShoppingCart />
               <span className="carttext">CART</span>
-              <span>[0]</span>
+              <span>[{cart.length}]</span>
             </div>
             <div className="profile">
               <FaUserCircle onClick={() => navigate("profile")} />
@@ -114,14 +118,14 @@ const Header = () => {
         </article>
       </section>
       <section className="headercontainer2">
-        {slides.map((text, index) => (
+        {slidesShow.map((slides, index) => (
           <span
             key={index}
             className={`slideshow ${
               index === currentSlide ? "active-slide" : ""
             }`}
           >
-            {text}
+            {slides}
           </span>
         ))}
       </section>

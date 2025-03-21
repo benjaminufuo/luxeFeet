@@ -71,6 +71,15 @@
 ::placeholder {
   color: #c9c9c99c;
 }
+.error {
+  color: #e60914;
+  font-size: 14px;
+  margin-top: 2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3px;
+}
 
 .checkforgetpassword {
   display: flex;

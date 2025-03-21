@@ -26,14 +26,16 @@ const App = () => {
     },
     {
       element: <Private />,
-      children: [{ path: "home/checkout", element: <Checkout /> }],
+      children: [
+        { path: "home/checkout", element: <Checkout /> },
+        { path: "profile", element: <Profile /> },
+      ],
     },
     { path: "/", element: <Home /> },
     { path: "login", element: <Login /> },
     { path: "signup", element: <Signup /> },
     { path: "forgetpassword", element: <Forgetpassword /> },
     { path: "resetpassword", element: <Resetpassword /> },
-    { path: "profile", element: <Profile /> },
     { path: "*", element: <Home /> },
   ]);
   return (

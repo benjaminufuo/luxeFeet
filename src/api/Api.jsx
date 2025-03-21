@@ -56,7 +56,8 @@ export const forgetPassword = async (setUpdate, email) => {
     const response = await axios.post(`${baseUrl}/forget-password`, {
       email,
     });
-    localStorage.setItem("resetToken", response.data.token);
+    toast.success("Check your email to reset password");
+    console.log(response);
     setUpdate(response.data.message);
     console.log(response.data);
   } catch (error) {
@@ -71,7 +72,6 @@ export const resetPassword = async (
   setUpdateMessage
 ) => {
   try {
-    const token = localStorage.getItem("resetToken");
     if (!token) {
       toast.error("Reset token not found. Request a new link.");
       return false;

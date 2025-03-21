@@ -29,8 +29,10 @@ const Resetpassword = () => {
     await resetPassword(
       input.password,
       input.confirmPassword,
+
       setUpdateMessage
     );
+
     if (success) {
       setTimeout(() => {
         navigate("/login");

@@ -1,8 +1,30 @@
 import "./shoppingCart.css";
 import { useConstomHook } from "../../global/Context";
+import { useEffect, useState } from "react";
 
 const ShopingCart = () => {
-  const { cart } = useConstomHook();
+  const { cart, deleteFromCart } = useConstomHook();
+  const [subTotal, setSubTotal] = useState(0);
+  const [delivery, setDelivery] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const newSubtotal = cart.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+    setSubTotal(newSubtotal);
+
+    const deliveryFee = 1000;
+    setDelivery(deliveryFee);
+
+    const discountAmount = newSubtotal * 0.03;
+    setDiscount(discountAmount);
+
+    const newTotal = newSubtotal + deliveryFee - discountAmount;
+    setTotal(newTotal);
+  }, [cart]);
   return (
     <div className="ShopingCartBody">
       <div className="ShopingCartBodySmall">
@@ -61,10 +83,15 @@ const ShopingCart = () => {
                   <p>{product.description}</p>
                 </div>
                 <div className="ShopingCartBodyRow2">
-                  <p>{product.price}</p>
-                  <input type="text" className="Input" />
-                  <p>{product.price}</p>
-                  <div className="cancleBox">x</div>
+                  <p>₦{product.price}</p>
+                  <div className="Input">{product.quantity}</div>
+                  <p>₦{product.price * product.quantity}</p>
+                  <div
+                    className="cancleBox"
+                    onClick={() => deleteFromCart(product)}
+                  >
+                    x
+                  </div>
                 </div>
               </div>
             ))
@@ -87,20 +114,20 @@ const ShopingCart = () => {
             <div className="SubtotalSmall">
               <div className="SubtotalSmalls">
                 <span>Subtotal:</span>
-                <span>$200</span>
+                <span>₦{subTotal.toFixed(2)}</span>
               </div>
               <div className="SubtotalSmalls">
                 <span>Delivery:</span>
-                <span>$0.00</span>
+                <span>₦{delivery.toFixed(2)}</span>
               </div>
               <div className="SubtotalSmalls">
                 <span>Discount:</span>
-                <span>$45.00</span>
+                <span>₦{discount.toFixed(2)}</span>
               </div>
               <hr />
               <div className="SubtotalSmalls">
                 <span>Total:</span>
-                <span>$450.00</span>
+                <span>₦{total.toFixed(2)}</span>
               </div>
             </div>
           </div>

@@ -34,12 +34,6 @@ const Resetpassword = () => {
       setUpdateMessage,
       token
     );
-
-    if (success) {
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
-    }
   };
 
   return (

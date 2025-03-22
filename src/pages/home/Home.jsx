@@ -2,21 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../../src/components/Footer";
 import "./home.css";
-import { getAllProduct } from "../../api/Api";
 import { useConstomHook } from "../../global/Context";
-import { use } from "react";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [fade, setFade] = useState(false);
-  const [products, setProducts] = useState([]);
-  const { addToCart } = useConstomHook();
-
-  useEffect(() => {
-    // fetchProduct();
-    getAllProduct(setProducts);
-  }, []);
-  console.log(products);
+  const { addToCart, products } = useConstomHook();
 
   const slides = [
     {

@@ -143,7 +143,7 @@ const Home = () => {
               </article>
               <span>{product.description}</span>
               <span className="span">{product.category}</span>
-              <span>{product.price}</span>
+              <span>₦{product.price}</span>
             </div>
           ))
         ) : (

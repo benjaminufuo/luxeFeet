@@ -17,7 +17,7 @@ export const userSignUp = async (
       password,
       confirmPassword,
     });
-    toast.success("sign up successful");
+    toast.success("sign up successful, Check email to verify");
     console.log("this is the response ", response);
     localStorage.setItem("token", response.data);
     console.log("this is", response.data);
@@ -34,20 +34,17 @@ export const userLogIn = async (input, navigate) => {
     localStorage.setItem("token", response.token);
     console.log(userInfo);
     toast.success("Login successful");
-    navigate("/");
+    setTimeout(() => {
+      navigate("/");
+    }, 5000);
     console.log(response);
   } catch (error) {
-    console.log("login error", error);
-    toast.error("Failed to log in");
-  }
-};
-
-export const getAllProduct = async (setState) => {
-  try {
-    const response = await axios.get(`${baseUrl}/getAllProducts`);
-    setState(response.data.data);
-  } catch (error) {
-    console.log("unable to get", error);
+    if (error.response && error.response.data) {
+      if (!error.response.data.isVerified) {
+        console.log("login error");
+        toast.error("Failed to log in, please verify email to log in");
+      }
+    }
   }
 };
 

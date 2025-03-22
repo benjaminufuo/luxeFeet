@@ -1,11 +1,13 @@
 import React, { useState, useContext, use, useEffect } from "react";
 import "../login/login.css";
 import "../signup/signup.css";
+import { useConstomHook } from "../../../global/Context";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { userSignUp } from "../../../api/Api";
 
 const Signup = () => {
+  const { loading, setLoading } = useConstomHook();
   const navigate = useNavigate();
   const [disabled, setIsDisabled] = useState(true);
   const [errorMessage, setErrorMessage] = useState({
@@ -96,11 +98,14 @@ const Signup = () => {
         confirmPassword,
         navigate
       );
-      if (success) {
+
+      setTimeout(() => {
         navigate("/login");
-      }
+      }, 5000);
     } catch (error) {
       console.error("Signup failed:", error.response?.data || error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -225,7 +230,7 @@ const Signup = () => {
               disabled={disabled}
               style={{ backgroundColor: disabled ? "#b8bab8" : "#88c8bc" }}
             >
-              Signup
+              {loading ? "Signup" : "Loading"}
             </button>
           </div>
         </form>

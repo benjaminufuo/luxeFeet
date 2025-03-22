@@ -1,4 +1,6 @@
+import Item from "antd/es/list/Item";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { createContext } from "react";
 import { useContext } from "react";
 
@@ -8,50 +10,73 @@ export const useConstomHook = () => useContext(UserContext);
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
 
   const addToCart = (product) => {
-    setCart((prev) => [...prev, product]);
+    const id = product._id;
+    const goods = "quantity";
+    if (cart.find((Item) => Item._id === id)) {
+      cart.map((int) => {
+        if (int._id === id) {
+          int = { ...int, [goods]: int.quantity++ };
+          return int;
+        } else {
+          return int;
+        }
+      });
+    } else {
+      setCart((prev) => [...prev, { ...product, [goods]: 1 }]);
+    }
+  };
+  const deleteFromCart = (product) => {
+    const id = product._id;
+    setCart((prevCart) =>
+      prevCart
+        .map((item) => {
+          if (item._id === id) {
+            if (item.quantity > 1) {
+              return { ...item, quantity: item.quantity - 1 };
+            } else {
+              return null;
+            }
+          }
+          return item;
+        })
+        .filter((item) => item !== null)
+    );
+  };
+  console.log("this is shoping cart", cart);
+  const baseUrl = "https://ecommerce-project-m2bb.onrender.com/api/v1";
+
+  const getAllProduct = async (setState) => {
+    try {
+      const response = await axios.get(`${baseUrl}/getAllProducts`);
+      setState(response.data.data);
+    } catch (error) {
+      console.log("unable to get", error);
+    }
   };
 
   useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      try {
-        setUser(JSON.parse(userData));
-      } catch (error) {
-        console.error("Failed to parse user data", error);
-        localStorage.removeItem("user");
-      }
-    }
-
-    const cartData = localStorage.getItem("cart");
-    if (cartData) {
-      try {
-        setUser(JSON.parse(userData));
-      } catch (error) {
-        console.error("Failed to parse user data", error);
-        localStorage.removeItem("user");
-      }
-    }
+    // fetchProduct();
+    getAllProduct(setProducts);
   }, []);
-
-  const saveUser = (userDetails) => {
-    if (userDetails && typeof userDetails === "object") {
-      localStorage.setItem("user", JSON.stringify(userDetails));
-      setUser(userDetails);
-    } else {
-      console.error("Invalid user details", userDetails);
-    }
-  };
-
-  const logoutUser = () => {
-    localStorage.removeItem("user");
-    setUser(null);
-  };
+  console.log(products);
 
   return (
     <UserContext.Provider
-      value={{ user, saveUser, logoutUser, cart, addToCart }}
+      value={{
+        user,
+        cart,
+        addToCart,
+        loading,
+        setLoading,
+        getAllProduct,
+        products,
+        setProducts,
+        deleteFromCart,
+      }}
     >
       {children}
     </UserContext.Provider>

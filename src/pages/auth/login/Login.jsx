@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../login/login.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { UserContext } from "../../../global/Context";
+import { useConstomHook } from "../../../global/Context";
 import toast, { Toaster } from "react-hot-toast";
 import { userLogIn } from "../../../api/Api";
 
 const Login = () => {
+  const { loading, setLoading } = useConstomHook();
   const navigate = useNavigate();
   const [ischecked, setIschecked] = useState("");
   const [disabled, setIsDisabled] = useState(true);
@@ -34,9 +35,10 @@ const Login = () => {
       if (!value.trim()) {
         error = "Password is required";
       } else if (value.length < 6 || value.length > 60) {
-        error = "Password dhould be between 6 and 60 characters";
+        error = "Password should be between 6 and 60 characters";
       }
     }
+
     setLoginError((prev) => ({ ...prev, [name]: error }));
   };
 
@@ -57,14 +59,15 @@ const Login = () => {
       if (!response.data.isVerified) {
         toast.error("Verify your email to log in");
         return;
-      }
-      toast.success("Login successful redirecting....");
-      setTimeout(() => {
+      } else {
+        toast.success("Login successful redirecting....");
+
         navigate("/");
-      }, 5000);
+      }
     } catch (error) {
-      toast.error("Login failed, please try again.");
       console.error("Login error:", error);
+    } finally {
+      setLoading(false);
     }
   };
   const validateEmail = (input) => {
@@ -149,13 +152,14 @@ const Login = () => {
               </p>
               here
             </span>
+
             <button
               className="loginbtn"
               type="submit"
               disabled={disabled}
               style={{ backgroundColor: disabled ? "#b8bab8" : "#88c8bc" }}
             >
-              Login
+              {loading ? "Login" : "Loading..."}
             </button>
           </div>
         </form>

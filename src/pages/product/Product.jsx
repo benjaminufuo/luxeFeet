@@ -30,13 +30,12 @@ const Product = () => {
   
 
 
-
     const baseUrl = "https://ecommerce-project-m2bb.onrender.com/api/v1";
 
 
   const getProduct = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/getOneProduct/_id`)
+      const response = await axios.get(`${baseUrl}/getOneProduct/67d31af570864bcc34c46273`)
       setProducts(response.data.data)
       console.log("this is the res", response.data.data)
     } catch (error) {
@@ -73,7 +72,7 @@ const Product = () => {
         <div className="ProductBodySmallNav2">
           <div className="ProductBodySmallNav2Small">
             <h3>{products?.category}</h3>
-            <h2>{products?.price}</h2>
+            <h2>₦{products?.price}</h2>
             <h5>(74 Rating)</h5>
             <p className="Content">{products?.description}
             </p>
@@ -82,7 +81,7 @@ const Product = () => {
             <div className="ProductBodySmallNav2SmallSizesBox">
               <div className="ProductBodySmallNav2SmallSizesBoxes">
 
-                {product?.sizes}
+                {products?.sizes}
               </div>
             </div>
 

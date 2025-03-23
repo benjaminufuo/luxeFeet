@@ -232,11 +232,14 @@
   & span {
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
   }
   .span {
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     overflow: hidden;
+    color: gray;
+    font-size: 15px;
   }
 }
 .article:hover .addToCart {

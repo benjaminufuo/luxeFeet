@@ -12,6 +12,7 @@ const UserProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [productId, setProductId] = useState("")
 
   const addToCart = (product) => {
     const id = product._id;
@@ -76,6 +77,8 @@ const UserProvider = ({ children }) => {
         products,
         setProducts,
         deleteFromCart,
+        productId,
+        setProductId
       }}
     >
       {children}

@@ -3,12 +3,15 @@ import Header from "../../components/Header";
 import Footer from "../../../src/components/Footer";
 import "./home.css";
 import { useConstomHook } from "../../global/Context";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [fade, setFade] = useState(false);
-  const { addToCart, products } = useConstomHook();
+  const { addToCart, products, setProductId } = useConstomHook();
 
+const navigate = useNavigate()
   const slides = [
     {
       image: "https://preview.colorlib.com/theme/footwear/images/men.jpg",
@@ -80,6 +83,8 @@ const Home = () => {
     { image: "https://preview.colorlib.com/theme/footwear/images/brand-3.jpg" },
     { image: "https://preview.colorlib.com/theme/footwear/images/brand-5.jpg" },
   ];
+
+
   return (
     <main className="homemain">
       <Header />
@@ -132,7 +137,7 @@ const Home = () => {
         {products.length > 0 ? (
           products.map((product) => (
             <div className="homeproductdisplay" key={product._id}>
-              <article className="article">
+              <article className="article" onClick={() =>  {setProductId(product._id), navigate("/home/product")}}>
                 <img src={product.image.imageUrl} alt={product.description} />
                 <button
                   className="addToCart"

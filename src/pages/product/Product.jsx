@@ -24,7 +24,7 @@ const Product = () => {
 
   // const [addCart, setAddCart] = useState([])
 
-  const { addToCart } = useConstomHook();
+  const { addToCart, productId } = useConstomHook();
 
     const [products, setProducts] = useState([]);
   
@@ -35,7 +35,7 @@ const Product = () => {
 
   const getProduct = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/getOneProduct/67d31af570864bcc34c46273`)
+      const response = await axios.get(`${baseUrl}/getOneProduct/${productId}`)
       setProducts(response.data.data)
       console.log("this is the res", response.data.data)
     } catch (error) {
@@ -59,9 +59,13 @@ const Product = () => {
         <h3><span className="HeaderHome">HOME </span> / PRODUCT</h3>
       </div>
 
+  
+        {products.length > 0 ? (
+  <p>Add a product!!!</p>
+  ): (
       <div className="ProductBodySmallNav">
+          
         <div className="ProductBodySmallNav1">
-
           <img className="Img1" src={products?.image?.imageUrl} alt="" />
           {/* {togglePic === 1 ?
           (<img className="Img1" src="https://preview.colorlib.com/theme/footwear/images/item-1.jpg" alt="" />) 
@@ -103,12 +107,13 @@ const Product = () => {
               <div className="ProductBodySmallNav2AddBoxesShort" onClick={() => setAdd(add + 1)}>+</div>
             </div>
 
-            <div className="Add2Cart"><IoMdCart size={20} onClick={() => addToCart(product)}/>Add to Cart</div>
+            <div className="Add2Cart"><IoMdCart size={20} onClick={() => addToCart(products)}/>Add to Cart</div>
           </div>
         </div>
       </div>
+)}
 
-      <div className="ProductBodySmallDotBox">
+      {/* <div className="ProductBodySmallDotBox">
         <div className={`${ activeCircle === "" ? "ACTIVECIRCLE" : "ProductBodySmallDotBox1"  }`}
          onClick={() => {setTogglePic(1), setActiveCircle("1")}}
         >
@@ -127,7 +132,7 @@ const Product = () => {
         >
         </div>
         
-      </div>
+      </div> */}
 
       <div className="ProductBodySmallDescriptionBox">
         <div className={`${isActive === "DISCRIPTION" ? "ACTIVE" : "ProductBodySmallDescriptionBoxs"}`}

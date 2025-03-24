@@ -244,12 +244,12 @@ const ProductCard = ({ product, onDelete }) => {
         </div>
         {isAdmin && (
           <div className="product-actions" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => (window.location.href = `/edit-product/${product._id}`)} className="edit-btn">
+            {/* <button onClick={() => (window.location.href = `/edit-product/${product._id}`)} className="edit-btn">
               Edit
             </button>
             <button onClick={onDelete} className="delete-btn">
               Delete
-            </button>
+            </button> */}
           </div>
         )}
       </div>

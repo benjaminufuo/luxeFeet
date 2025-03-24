@@ -2,11 +2,13 @@ import { useState, useEffect } from "react"
 import { getAllWomenProducts, deleteWomenProduct } from "../../api/Api"
 import toast  from "react-hot-toast"
 import "./productgrid.css"
+import {useConstomHook} from "../../global/Context";
 
 const ProductGrid = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+   const {addToCart} = useConstomHook ();
   const [currentPage, setCurrentPage] = useState(1)
   const [filters, setFilters] = useState({
     brand: [],
@@ -250,6 +252,9 @@ const ProductCard = ({ product, onDelete }) => {
             <button onClick={onDelete} className="delete-btn">
               Delete
             </button> */}
+             <button className="addToCart"onClick={() => addToCart(product)}>
+                              Add to cart
+                            </button>
           </div>
         )}
       </div>
